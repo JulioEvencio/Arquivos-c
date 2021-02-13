@@ -21,5 +21,6 @@ typedef struct tipo_cliente Cliente;
 typedef struct tipo_lista Lista;
 
 /*	Funcoes */
+Lista *TAD_CriarLista(void);
 
 #endif

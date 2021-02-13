@@ -9,3 +9,12 @@ struct tipo_lista
 };
 
 /*	Funcoes */
+Lista *TAD_CriarLista(void)
+{
+	Lista *lista = (Lista*) malloc(sizeof(Lista));
+	if(lista != NULL)
+	{
+		lista->elementos = TAD_LISTA_VAZIA;
+	}
+	return lista;
+}
