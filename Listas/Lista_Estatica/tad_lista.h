@@ -8,6 +8,8 @@
 #define TAD_LISTA_SUCESSO 0
 #define TAD_LISTA_INEXISTENTE -1
 #define TAD_LISTA_CHEIA -2
+#define TAD_LISTA_VAZIA -3
+#define TAD_ELEMENTO_INEXISTENTE -4
 
 /*	Estruturas */
 struct tipo_cliente
@@ -29,5 +31,8 @@ int TAD_VerificarListaVazia(Lista *lista);
 int TAD_IncluirElementoInicio(Lista *lista, Cliente cliente);
 int TAD_IncluirElementoFinal(Lista *lista, Cliente cliente);
 int TAD_IncluirElementoOrdenada(Lista *lista, Cliente cliente);
+int TAD_ExcluirElementoInicio(Lista *lista);
+int TAD_ExcluirElementoFinal(Lista *lista);
+int TAD_ExcluirElementoCodigo(Lista *lista, int codigo);
 
 #endif

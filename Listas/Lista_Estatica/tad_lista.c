@@ -73,7 +73,7 @@ int TAD_IncluirElementoOrdenada(Lista *lista, Cliente cliente)
 	int k, i = TAD_LISTA_INICIO;
 	while(i < lista->elementos && lista->cliente[i].codigo < cliente.codigo)
 	{
-		i++
+		i++;
 	}
 	for(k = lista->elementos-1; k >= i; k--)
 	{
@@ -81,5 +81,46 @@ int TAD_IncluirElementoOrdenada(Lista *lista, Cliente cliente)
 	}
 	lista->cliente[i] = cliente;
 	lista->elementos++;
+	return TAD_LISTA_SUCESSO;
+}
+
+int TAD_ExcluirElementoInicio(Lista *lista)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	for(int i = TAD_LISTA_INICIO; i < lista->elementos; i++)
+	{
+		lista->cliente[i] = lista->cliente[i+1];
+	}
+	lista->elementos--;
+	return TAD_LISTA_SUCESSO;
+}
+
+int TAD_ExcluirElementoFinal(Lista *lista)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	lista->elementos--;
+	return TAD_LISTA_SUCESSO;
+}
+
+int TAD_ExcluirElementoCodigo(Lista *lista, int codigo)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	int k, i = TAD_LISTA_INICIO;
+	while(i < lista->elementos && lista->cliente[i].codigo != codigo)
+	{
+		i++;
+	}
+	if(i == lista->elementos)
+	{
+		return TAD_ELEMENTO_INEXISTENTE;
+	}
+	for(k = i; k < lista->elementos; k++)
+	{
+		lista->cliente[k] = lista->cliente[k+1];
+	}
+	lista->elementos--;
 	return TAD_LISTA_SUCESSO;
 }
