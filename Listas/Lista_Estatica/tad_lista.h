@@ -7,6 +7,7 @@
 //	Erros
 #define TAD_LISTA_SUCESSO 0
 #define TAD_LISTA_INEXISTENTE -1
+#define TAD_LISTA_CHEIA -2
 
 /*	Estruturas */
 struct tipo_cliente
@@ -25,5 +26,8 @@ int TAD_LiberarLista(Lista *lista);
 int TAD_VerificarListaTamanho(Lista *lista);
 int TAD_VerificarListaCheia(Lista *lista);
 int TAD_VerificarListaVazia(Lista *lista);
+int TAD_IncluirElementoInicio(Lista *lista, Cliente cliente);
+int TAD_IncluirElementoFinal(Lista *lista, Cliente cliente);
+int TAD_IncluirElementoOrdenada(Lista *lista, Cliente cliente);
 
 #endif
