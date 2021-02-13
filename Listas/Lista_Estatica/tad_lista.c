@@ -25,3 +25,9 @@ int TAD_LiberarLista(Lista *lista)
 	free(lista);
 	return TAD_LISTA_SUCESSO;
 }
+
+int TAD_VerificarListaTamanho(Lista *lista)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	return lista->elementos;
+}
