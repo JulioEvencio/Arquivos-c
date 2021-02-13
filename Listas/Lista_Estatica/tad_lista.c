@@ -18,3 +18,10 @@ Lista *TAD_CriarLista(void)
 	}
 	return lista;
 }
+
+int TAD_LiberarLista(Lista *lista)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	free(lista);
+	return TAD_LISTA_SUCESSO;
+}
