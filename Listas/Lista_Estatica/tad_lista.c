@@ -31,3 +31,9 @@ int TAD_VerificarListaTamanho(Lista *lista)
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
 	return lista->elementos;
 }
+
+int TAD_VerificarListaCheia(Lista *lista)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	return lista->elementos == TAD_LISTA_TAMANHO_MAX;
+}

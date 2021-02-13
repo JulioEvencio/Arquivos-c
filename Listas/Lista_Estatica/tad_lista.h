@@ -24,5 +24,6 @@ typedef struct tipo_lista Lista;
 Lista *TAD_CriarLista(void);
 int TAD_LiberarLista(Lista *lista);
 int TAD_VerificarListaTamanho(Lista *lista);
+int TAD_VerificarListaCheia(Lista *lista);
 
 #endif
