@@ -124,3 +124,26 @@ int TAD_ExcluirElementoCodigo(Lista *lista, int codigo)
 	lista->elementos--;
 	return TAD_LISTA_SUCESSO;
 }
+
+int TAD_ObterElementoPosicao(Lista *lista, Cliente *cliente, int posicao)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	if(posicao < TAD_LISTA_INICIO || posicao > lista->elementos) return TAD_POSICAO_INVALIDA;
+	*cliente = lista->cliente[posicao];
+	return TAD_LISTA_SUCESSO;
+}
+
+int TAD_ObterElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	int i = TAD_LISTA_INICIO;
+	while(i < lista->elementos && lista->cliente[i].codigo != codigo)
+	{
+		i++;
+	}
+	if(i == lista->elementos)
+	{
+		return TAD_ELEMENTO_INEXISTENTE;
+	}
+	*cliente = lista->cliente[i];
+}

@@ -10,6 +10,7 @@
 #define TAD_LISTA_CHEIA -2
 #define TAD_LISTA_VAZIA -3
 #define TAD_ELEMENTO_INEXISTENTE -4
+#define TAD_POSICAO_INVALIDA -5
 
 /*	Estruturas */
 struct tipo_cliente
@@ -34,5 +35,7 @@ int TAD_IncluirElementoOrdenada(Lista *lista, Cliente cliente);
 int TAD_ExcluirElementoInicio(Lista *lista);
 int TAD_ExcluirElementoFinal(Lista *lista);
 int TAD_ExcluirElementoCodigo(Lista *lista, int codigo);
+int TAD_ObterElementoPosicao(Lista *lista, Cliente *cliente, int posicao);
+int TAD_ObterElementoCodigo(Lista *lista, Cliente *cliente, int codigo);
 
 #endif
