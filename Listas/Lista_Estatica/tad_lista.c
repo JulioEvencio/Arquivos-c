@@ -14,7 +14,7 @@ Lista *TAD_CriarLista(void)
 	Lista *lista = (Lista*) malloc(sizeof(Lista));
 	if(lista != NULL)
 	{
-		lista->elementos = TAD_LISTA_VAZIA;
+		lista->elementos = TAD_LISTA_INICIO;
 	}
 	return lista;
 }
@@ -36,4 +36,10 @@ int TAD_VerificarListaCheia(Lista *lista)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
 	return lista->elementos == TAD_LISTA_TAMANHO_MAX;
+}
+
+int TAD_VerificarListaVazia(Lista *lista)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	return lista->elementos == TAD_LISTA_INICIO;
 }

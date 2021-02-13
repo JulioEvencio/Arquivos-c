@@ -3,7 +3,6 @@
 
 /*	Constantes */
 #define TAD_LISTA_TAMANHO_MAX 100
-#define TAD_LISTA_VAZIA 0
 #define TAD_LISTA_INICIO 0
 //	Erros
 #define TAD_LISTA_SUCESSO 0
@@ -25,5 +24,6 @@ Lista *TAD_CriarLista(void);
 int TAD_LiberarLista(Lista *lista);
 int TAD_VerificarListaTamanho(Lista *lista);
 int TAD_VerificarListaCheia(Lista *lista);
+int TAD_VerificarListaVazia(Lista *lista);
 
 #endif
