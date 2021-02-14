@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "cabecalho.h"
 
 /*  Funcoes */
@@ -41,6 +42,8 @@ void printar_menu(void)
 
 void listar_lista(Lista *lista)
 {
+    system(LIMPAR_TELA);
+    puts("-----------LISTAR-----------");
     if(TAD_VerificarListaVazia(lista))
     {
         puts("Lista vazia!");
@@ -62,6 +65,8 @@ void listar_lista(Lista *lista)
 
 void incluir_cliente(Lista *lista)
 {
+    system(LIMPAR_TELA);
+    puts("-----------INCLUIR-----------");
     int erro;
     Cliente cliente;
     puts("Digite o:");
@@ -78,6 +83,8 @@ void incluir_cliente(Lista *lista)
 
 void alterar_cliente(Lista *lista)
 {
+    system(LIMPAR_TELA);
+    puts("-----------ALTERAR-----------");
     int erro, codigo;
     Cliente cliente;
     puts("--------- Cliente antigo ---------");
@@ -98,6 +105,8 @@ void alterar_cliente(Lista *lista)
 
 void excluir_cliente(Lista *lista)
 {
+    system(LIMPAR_TELA);
+    puts("-----------EXCLUIR-----------");
     int erro, codigo;
     printf("Digite o codigo do cliente que deseja excluir: ");
     scanf("%d", &codigo);
@@ -111,6 +120,8 @@ void excluir_cliente(Lista *lista)
 
 void gravar_lista(Lista *lista, char *arquivo)
 {
+    system(LIMPAR_TELA);
+    puts("-----------GRAVAR-----------");
     FILE *file = NULL;
     if((file = fopen(arquivo, ARQUIVO_MODO_EDICAO)) == NULL)
     {
@@ -158,6 +169,8 @@ void carregar_lista(Lista *lista, char *arquivo)
 
 void formatar_lista(Lista *lista)
 {
+    system(LIMPAR_TELA);
+    puts("-----------FORMATAR-----------");
     int erro = TAD_FormatarLista(lista);
     if(erro == TAD_LISTA_INEXISTENTE) puts("Lista nao existe!");
     if(erro == TAD_LISTA_SUCESSO) puts("Lista formatada com sucesso!");
