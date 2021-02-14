@@ -34,6 +34,7 @@ void printar_menu(void)
     puts("3. Alterar");
     puts("4. Excluir");
     puts("5. Gravar lista");
+    puts("6. Formatar");
     puts("0. Sair");
     printf("Opcao: ");
 }
@@ -106,4 +107,11 @@ void excluir_cliente(Lista *lista)
     if(erro == TAD_LISTA_VAZIA) puts("Lista vazia!");
     if(erro == TAD_ELEMENTO_INEXISTENTE) puts("Cliente inexistente!");
     if(erro == TAD_LISTA_SUCESSO) puts("Cliente excluido com sucesso!");
+}
+
+void formatar_lista(Lista *lista)
+{
+    int erro = TAD_FormatarLista(lista);
+    if(erro == TAD_LISTA_INEXISTENTE) puts("Lista nao existe!");
+    if(erro == TAD_LISTA_SUCESSO) puts("Lista formatada com sucesso!");
 }

@@ -172,3 +172,10 @@ int TAD_AlterarElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
 	lista->cliente[i] = *cliente;
 	return TAD_LISTA_SUCESSO;
 }
+
+int TAD_FormatarLista(Lista *lista)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	lista->elementos = TAD_LISTA_INICIO;
+	return TAD_LISTA_SUCESSO;
+}

@@ -37,6 +37,9 @@ int main(void)
 			case opcao_gravar:
 				puts("Gravar");
 				break;
+			case opcao_formatar:
+				formatar_lista(lista);
+				break;
 			case opcao_sair:
 				puts("Obrigado por utilizar esse programa!");
 				break;

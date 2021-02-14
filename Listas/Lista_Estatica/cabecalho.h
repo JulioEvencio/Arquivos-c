@@ -13,7 +13,8 @@ enum enum_menu
     opcao_incluir,
     opcao_alterar,
     opcao_excluir,
-    opcao_gravar
+    opcao_gravar,
+    opcao_formatar
 };
 
 /*  Funcoes */
@@ -24,5 +25,6 @@ void listar_lista(Lista *lista);
 void incluir_cliente(Lista *lista);
 void alterar_cliente(Lista *lista);
 void excluir_cliente(Lista *lista);
+void formatar_lista(Lista *lista);
 
 #endif

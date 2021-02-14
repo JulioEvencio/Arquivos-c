@@ -40,5 +40,6 @@ int TAD_ObterElementoPosicao(Lista *lista, Cliente *cliente, int posicao);
 int TAD_ObterElementoCodigo(Lista *lista, Cliente *cliente, int codigo);
 int TAD_AlterarElementoPosicao(Lista *lista, Cliente *cliente, int posicao);
 int TAD_AlterarElementoCodigo(Lista *lista, Cliente *cliente, int codigo);
+int TAD_FormatarLista(Lista *lista);
 
 #endif
