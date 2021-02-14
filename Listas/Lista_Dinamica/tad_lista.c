@@ -131,21 +131,58 @@ int TAD_IncluirElementoOrdenada(Lista *lista, Cliente *cliente)
 int TAD_ExcluirElementoInicio(Lista *lista)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	Nodo *nodo = lista->inicio;
+	lista->inicio = nodo->prox;
+	free(nodo);
 	return TAD_LISTA_SUCESSO;
 }
 
 int TAD_ExcluirElementoFinal(Lista *lista)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	Nodo *nodo_anterior = NULL, *nodo = lista->inicio;
+	while(nodo->prox != NULL)
+	{
+		nodo_anterior = nodo;
+		nodo = nodo->prox;
+	}
+	if(nodo = lista->inicio)
+	{
+		lista->inicio = NULL;
+	}
+	else
+	{
+		nodo_anterior->prox = NULL;
+	}
+	free(nodo);
 	return TAD_LISTA_SUCESSO;
 }
 
 int TAD_ExcluirElementoCodigo(Lista *lista, int codigo)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	Nodo *nodo_anterior = NULL, *nodo = lista->inicio;
+	while(nodo->prox != NULL && nodo->cliente.codigo != codigo)
+	{
+		nodo_anterior = nodo;
+		nodo = nodo->prox;
+	}
+	if(nodo == NULL)
+	{
+		return TAD_ELEMENTO_INEXISTENTE;
+	}
+	if(nodo = lista->inicio)
+	{
+		lista->inicio = NULL;
+	}
+	else
+	{
+		nodo_anterior->prox = nodo->prox;
+	}
+	free(nodo);
 	return TAD_LISTA_SUCESSO;
 }
 
