@@ -69,7 +69,7 @@ void incluir_cliente(Lista *lista)
     limpar_buffer();
     printf("Nome: ");
     ler_string(cliente.nome, CLIENTE_NOME_TAMANHO);
-    erro = TAD_IncluirElementoOrdenada(lista, cliente);
+    erro = TAD_IncluirElementoOrdenada(lista, &cliente);
     if(erro == TAD_LISTA_INEXISTENTE) puts("Lista nao existe!");
     if(erro == TAD_LISTA_CHEIA) puts("Lista cheia!");
     if(erro == TAD_LISTA_SUCESSO) puts("Cliente incluido com sucesso!");

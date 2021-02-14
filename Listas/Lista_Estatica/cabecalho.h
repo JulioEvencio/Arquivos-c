@@ -4,13 +4,17 @@
 
 /*  Constantes */
 #define LIMPAR_TELA "clear"
-//  Menu
-#define OPCAO_SAIR 0
-#define OPCAO_LISTAR 1
-#define OPCAO_INCLUIR 2
-#define OPCAO_ALTERAR 3
-#define OPCAO_EXCLUIR 4
-#define OPCAO_GRAVAR_LISTA 5
+
+/*  Enum */
+enum enum_menu
+{
+    opcao_sair,
+    opcao_listar,
+    opcao_incluir,
+    opcao_alterar,
+    opcao_excluir,
+    opcao_gravar
+};
 
 /*  Funcoes */
 void limpar_buffer(void);

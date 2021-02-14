@@ -44,42 +44,42 @@ int TAD_VerificarListaVazia(Lista *lista)
 	return lista->elementos == TAD_LISTA_INICIO;
 }
 
-int TAD_IncluirElementoInicio(Lista *lista, Cliente cliente)
+int TAD_IncluirElementoInicio(Lista *lista, Cliente *cliente)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
 	if(TAD_VerificarListaCheia(lista)) return TAD_LISTA_CHEIA;
-	for(int i = lista->elementos-1; i >= TAD_LISTA_INICIO; i--)
+	for(int i = lista->elementos; i >= TAD_LISTA_INICIO; i--)
 	{
-		lista->cliente[i+1] = lista->cliente[i];
+		lista->cliente[i] = lista->cliente[i - 1];
 	}
-	lista->cliente[TAD_LISTA_INICIO] = cliente;
+	lista->cliente[TAD_LISTA_INICIO] = *cliente;
 	lista->elementos++;
 	return TAD_LISTA_SUCESSO;
 }
 
-int TAD_IncluirElementoFinal(Lista *lista, Cliente cliente)
+int TAD_IncluirElementoFinal(Lista *lista, Cliente *cliente)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
 	if(TAD_VerificarListaCheia(lista)) return TAD_LISTA_CHEIA;
-	lista->cliente[lista->elementos] = cliente;
+	lista->cliente[lista->elementos] = *cliente;
 	lista->elementos++;
 	return TAD_LISTA_SUCESSO;
 }
 
-int TAD_IncluirElementoOrdenada(Lista *lista, Cliente cliente)
+int TAD_IncluirElementoOrdenada(Lista *lista, Cliente *cliente)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
 	if(TAD_VerificarListaCheia(lista)) return TAD_LISTA_CHEIA;
 	int k, i = TAD_LISTA_INICIO;
-	while(i < lista->elementos && lista->cliente[i].codigo < cliente.codigo)
+	while(i < lista->elementos && lista->cliente[i].codigo < cliente->codigo)
 	{
 		i++;
 	}
-	for(k = lista->elementos-1; k >= i; k--)
+	for(k = lista->elementos; k >= i; k--)
 	{
-		lista->cliente[k+1] = lista->cliente[k];
+		lista->cliente[k] = lista->cliente[k - 1];
 	}
-	lista->cliente[i] = cliente;
+	lista->cliente[i] = *cliente;
 	lista->elementos++;
 	return TAD_LISTA_SUCESSO;
 }
@@ -90,7 +90,7 @@ int TAD_ExcluirElementoInicio(Lista *lista)
 	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
 	for(int i = TAD_LISTA_INICIO; i < lista->elementos; i++)
 	{
-		lista->cliente[i] = lista->cliente[i+1];
+		lista->cliente[i] = lista->cliente[i + 1];
 	}
 	lista->elementos--;
 	return TAD_LISTA_SUCESSO;
@@ -119,7 +119,7 @@ int TAD_ExcluirElementoCodigo(Lista *lista, int codigo)
 	}
 	for(k = i; k < lista->elementos; k++)
 	{
-		lista->cliente[k] = lista->cliente[k+1];
+		lista->cliente[k] = lista->cliente[k + 1];
 	}
 	lista->elementos--;
 	return TAD_LISTA_SUCESSO;
@@ -146,4 +146,29 @@ int TAD_ObterElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
 		return TAD_ELEMENTO_INEXISTENTE;
 	}
 	*cliente = lista->cliente[i];
+	return TAD_LISTA_SUCESSO;
+}
+
+int TAD_AlterarElementoPosicao(Lista *lista, Cliente *cliente, int posicao)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	if(posicao < TAD_LISTA_INICIO || posicao > lista->elementos) return TAD_POSICAO_INVALIDA;
+	lista->cliente[posicao] = *cliente;
+	return TAD_LISTA_SUCESSO;
+}
+
+int TAD_AlterarElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
+{
+	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	int i = TAD_LISTA_INICIO;
+	while(i < lista->elementos && lista->cliente[i].codigo != codigo)
+	{
+		i++;
+	}
+	if(i == lista->elementos)
+	{
+		return TAD_ELEMENTO_INEXISTENTE;
+	}
+	lista->cliente[i] = *cliente;
+	return TAD_LISTA_SUCESSO;
 }

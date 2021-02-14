@@ -22,22 +22,22 @@ int main(void)
 		limpar_buffer();
 		switch(opcao)
 		{
-			case OPCAO_LISTAR:
+			case opcao_listar:
 				listar_lista(lista);
 				break;
-			case OPCAO_INCLUIR:
+			case opcao_incluir:
 				incluir_cliente(lista);
 				break;
-			case OPCAO_ALTERAR:
+			case opcao_alterar:
 				alterar_cliente(lista);
 				break;
-			case OPCAO_EXCLUIR:
+			case opcao_excluir:
 				excluir_cliente(lista);
 				break;
-			case OPCAO_GRAVAR_LISTA:
+			case opcao_gravar:
 				puts("Gravar");
 				break;
-			case OPCAO_SAIR:
+			case opcao_sair:
 				puts("Obrigado por utilizar esse programa!");
 				break;
 			default:
@@ -48,7 +48,11 @@ int main(void)
 
 	}while(opcao);
 
-	TAD_LiberarLista(lista);
+	if((TAD_LiberarLista(lista)) == TAD_LISTA_INEXISTENTE)
+	{
+		puts("Erro ao liberar lista!");
+		return 1;
+	}
 
 	return 0;
 }
