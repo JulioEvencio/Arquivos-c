@@ -77,7 +77,22 @@ void incluir_cliente(Lista *lista)
 
 void alterar_cliente(Lista *lista)
 {
-    puts("Em breve...");
+    int erro, codigo;
+    Cliente cliente;
+    puts("--------- Cliente antigo ---------");
+    printf("Digite o codigo do cliente que deseja alterar: ");
+    scanf("%d", &codigo);
+    limpar_buffer();
+    puts("--------- Novo Cliente ---------");
+    printf("Novo Codigo: ");
+    scanf("%d", &cliente.codigo);
+    limpar_buffer();
+    printf("Novo Nome: ");
+    ler_string(cliente.nome, CLIENTE_NOME_TAMANHO);
+    erro = TAD_AlterarElementoCodigo(lista, &cliente, codigo);
+    if(erro == TAD_LISTA_INEXISTENTE) puts("Lista nao existe!");
+    if(erro == TAD_ELEMENTO_INEXISTENTE) puts("Cliente inexistente!");
+    if(erro == TAD_LISTA_SUCESSO) puts("Cliente alterado com sucesso!");
 }
 
 void excluir_cliente(Lista *lista)
