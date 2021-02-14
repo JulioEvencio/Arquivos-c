@@ -18,7 +18,10 @@ struct tipo_lista
 Lista *TAD_CriarLista(void)
 {
 	Lista *lista = (Lista*) malloc(sizeof(Lista));
-	//	Code
+	if(lista != NULL)
+	{
+		lista->inicio = NULL;
+	}
 	return lista;
 }
 
