@@ -3,10 +3,16 @@
 #include "tad_lista.h"
 #include "cabecalho.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int opcao;
 	Lista *lista = NULL;
+
+	if(argc != ARGUMENTOS_DO_PROGRAMA)
+	{
+		puts("Erro! Digite o <nome do programa> <nome do arquivo>");
+		return 1;
+	}
 
 	if((lista = TAD_CriarLista()) == NULL)
 	{
@@ -35,7 +41,7 @@ int main(void)
 				excluir_cliente(lista);
 				break;
 			case opcao_gravar:
-				puts("Gravar");
+				gravar_lista(lista, argv[INDICE_ARQUIVO]);
 				break;
 			case opcao_formatar:
 				formatar_lista(lista);

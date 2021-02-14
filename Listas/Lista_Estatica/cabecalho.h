@@ -4,6 +4,10 @@
 
 /*  Constantes */
 #define LIMPAR_TELA "clear"
+#define ARGUMENTOS_DO_PROGRAMA 2
+#define INDICE_ARQUIVO 1
+#define ARQUIVO_MODO_LEITURA "r"
+#define ARQUIVO_MODO_EDICAO "w"
 
 /*  Enum */
 enum enum_menu
@@ -25,6 +29,7 @@ void listar_lista(Lista *lista);
 void incluir_cliente(Lista *lista);
 void alterar_cliente(Lista *lista);
 void excluir_cliente(Lista *lista);
+void gravar_lista(Lista *lista, char *arquivo);
 void formatar_lista(Lista *lista);
 
 #endif

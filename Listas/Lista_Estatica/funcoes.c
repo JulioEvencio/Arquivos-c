@@ -109,6 +109,29 @@ void excluir_cliente(Lista *lista)
     if(erro == TAD_LISTA_SUCESSO) puts("Cliente excluido com sucesso!");
 }
 
+void gravar_lista(Lista *lista, char *arquivo)
+{
+    FILE *file = NULL;
+    if((file = fopen(arquivo, ARQUIVO_MODO_EDICAO)) == NULL)
+    {
+        puts("Erro ao abrir arquivo!");
+    }
+    else
+    {
+        int tamanho = TAD_VerificarListaTamanho(lista);
+        Cliente cliente;
+        fprintf(file, "%d \n", tamanho);
+        for(int i = 0; i < tamanho; i++)
+        {
+            TAD_ObterElementoPosicao(lista, &cliente, i);
+            fprintf(file, "Codigo: %d \n", cliente.codigo);
+            fprintf(file, "Nome: %s \n", cliente.nome);
+        } 
+        fclose(file);
+        puts("Lista gravada com sucesso");
+    }
+}
+
 void formatar_lista(Lista *lista)
 {
     int erro = TAD_FormatarLista(lista);
