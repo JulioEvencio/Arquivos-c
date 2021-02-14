@@ -28,7 +28,14 @@ Lista *TAD_CriarLista(void)
 int TAD_LiberarLista(Lista *lista)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	Nodo *nodo = NULL;
+	while(lista->inicio != NULL)
+	{
+		nodo = lista->inicio;
+		lista->inicio = nodo->prox;
+		free(nodo);
+	}
+	free(lista);
 	return TAD_LISTA_SUCESSO;
 }
 
