@@ -123,7 +123,7 @@ int TAD_IncluirElementoOrdenada(Lista *lista, Cliente *cliente)
 	else
 	{
 		no_anterior->prox = nodo;
-		nodo->prox = no_anterior->prox;
+		nodo->prox = no_atual;
 	}
 	return TAD_LISTA_SUCESSO;
 }
