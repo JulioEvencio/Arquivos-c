@@ -72,7 +72,11 @@ int TAD_VerificarListaVazia(Lista *lista)
 int TAD_IncluirElementoInicio(Lista *lista, Cliente *cliente)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	Nodo *nodo = (Nodo*) malloc(sizeof(Nodo));
+	if(nodo == NULL) return TAD_LISTA_INEXISTENTE;
+	nodo->cliente = *cliente;
+	nodo->prox = lista->inicio;
+	lista->inicio = nodo;
 	return TAD_LISTA_SUCESSO;
 }
 
