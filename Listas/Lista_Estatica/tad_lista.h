@@ -2,6 +2,7 @@
 #define TAD_LISTA_H_INCLUDED
 
 /*	Constantes */
+#define CLIENTE_NOME_TAMANHO 80
 #define TAD_LISTA_TAMANHO_MAX 100
 #define TAD_LISTA_INICIO 0
 //	Erros
@@ -16,7 +17,7 @@
 struct tipo_cliente
 {
 	int codigo;
-	char nome[80];
+	char nome[CLIENTE_NOME_TAMANHO];
 };
 
 /*	Ponteiros */
