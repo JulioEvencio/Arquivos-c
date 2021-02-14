@@ -232,14 +232,43 @@ int TAD_ObterElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
 int TAD_AlterarElementoPosicao(Lista *lista, Cliente *cliente, int posicao)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	if(posicao < TAD_LISTA_INICIO) return TAD_ELEMENTO_INEXISTENTE;
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	Nodo *nodo = lista->inicio;
+	int i = TAD_LISTA_INICIO + 1;
+	while(nodo != NULL && i < posicao)
+	{
+		nodo = nodo->prox;
+		i++;
+	}
+	if(nodo == NULL)
+	{
+		return TAD_ELEMENTO_INEXISTENTE;
+	}
+	else
+	{
+		nodo->cliente = *cliente;
+	}
 	return TAD_LISTA_SUCESSO;
 }
 
 int TAD_AlterarElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
+	Nodo *nodo = lista->inicio;
+	while(nodo != NULL && nodo->cliente.codigo != codigo)
+	{
+		nodo = nodo->prox;
+	}
+	if(nodo == NULL)
+	{
+		return TAD_ELEMENTO_INEXISTENTE;
+	}
+	else
+	{
+		nodo->cliente = *cliente;
+	}
 	return TAD_LISTA_SUCESSO;
 }
 
