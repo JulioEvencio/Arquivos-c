@@ -36,13 +36,21 @@ int TAD_LiberarLista(Lista *lista)
 		free(nodo);
 	}
 	free(lista);
+	lista = NULL;
 	return TAD_LISTA_SUCESSO;
 }
 
 int TAD_VerificarListaTamanho(Lista *lista)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	return 0;
+	int tamanho = TAD_LISTA_INICIO;
+	Nodo *nodo = lista->inicio;
+	while(nodo != NULL)
+	{
+		tamanho++;
+		nodo = nodo->prox;
+	}
+	return tamanho;
 }
 
 int TAD_VerificarListaCheia(Lista *lista)
