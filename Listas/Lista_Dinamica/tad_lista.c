@@ -275,6 +275,12 @@ int TAD_AlterarElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
 int TAD_FormatarLista(Lista *lista)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	Nodo *nodo = NULL;
+	while(lista->inicio != NULL)
+	{
+		nodo = lista->inicio;
+		lista->inicio = nodo->prox;
+		free(nodo);
+	}
 	return TAD_LISTA_SUCESSO;
 }
