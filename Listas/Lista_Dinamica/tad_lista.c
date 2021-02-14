@@ -110,18 +110,18 @@ int TAD_IncluirElementoOrdenada(Lista *lista, Cliente *cliente)
 	if(nodo == NULL) return TAD_LISTA_INEXISTENTE;
 	nodo->cliente = *cliente;
 	nodo->prox = NULL;
+	Nodo *no_anterior = NULL, *no_atual = lista->inicio;
+	while(no_atual != NULL && no_atual->cliente.codigo < cliente->codigo)
+	{
+		no_anterior = no_atual;
+		no_atual = no_atual->prox;
+	}
 	if(TAD_VerificarListaVazia(lista))
 	{
 		lista->inicio = nodo;
 	}
 	else
 	{
-		Nodo *no_anterior = NULL, *no_atual = lista->inicio;
-		while(no_atual != NULL && no_atual->cliente.codigo < cliente->codigo)
-		{
-			no_anterior = no_atual;
-			no_atual = no_atual->prox;
-		}
 		no_anterior->prox = nodo;
 		nodo->prox = no_anterior->prox;
 	}
