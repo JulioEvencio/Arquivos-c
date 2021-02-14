@@ -30,6 +30,7 @@ void incluir_cliente(Lista *lista);
 void alterar_cliente(Lista *lista);
 void excluir_cliente(Lista *lista);
 void gravar_lista(Lista *lista, char *arquivo);
+void carregar_lista(Lista *lista, char *arquivo);
 void formatar_lista(Lista *lista);
 
 #endif

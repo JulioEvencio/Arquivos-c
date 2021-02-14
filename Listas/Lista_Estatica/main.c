@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
+	carregar_lista(lista, argv[INDICE_ARQUIVO]);
+
 	do
 	{
 		system(LIMPAR_TELA);

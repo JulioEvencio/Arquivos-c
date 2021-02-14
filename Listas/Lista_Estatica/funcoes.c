@@ -124,12 +124,36 @@ void gravar_lista(Lista *lista, char *arquivo)
         for(int i = 0; i < tamanho; i++)
         {
             TAD_ObterElementoPosicao(lista, &cliente, i);
-            fprintf(file, "Codigo: %d \n", cliente.codigo);
-            fprintf(file, "Nome: %s \n", cliente.nome);
+            fprintf(file, "%d;%s\n", cliente.codigo, cliente.nome);
         } 
         fclose(file);
         puts("Lista gravada com sucesso");
     }
+}
+
+void carregar_lista(Lista *lista, char *arquivo)
+{
+    FILE *file = NULL;
+    if((file = fopen(arquivo, ARQUIVO_MODO_LEITURA)) == NULL)
+    {
+        puts("Erro ao abrir arquivo!");
+    }
+    else
+    {
+        int tamanho;
+        Cliente cliente;
+        fscanf(file, "%d%*c", &tamanho);
+        for(int i = 0; i < tamanho; i++)
+        {
+            fscanf(file, "%d%*c%s%*c", &cliente.codigo, cliente.nome);
+            TAD_IncluirElementoFinal(lista, &cliente);
+            if(feof(file)) break;
+        } 
+        fclose(file);
+        puts("Lista carregada com sucesso!");
+    }
+    puts("Pressione enter para continuar...");
+	limpar_buffer();
 }
 
 void formatar_lista(Lista *lista)
