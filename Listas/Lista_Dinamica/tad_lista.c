@@ -62,6 +62,10 @@ int TAD_VerificarListaCheia(Lista *lista)
 int TAD_VerificarListaVazia(Lista *lista)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
+	if(lista->inicio == NULL)
+	{
+		return 1;
+	}
 	return 0;
 }
 
