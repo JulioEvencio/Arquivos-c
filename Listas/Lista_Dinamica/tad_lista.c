@@ -87,7 +87,7 @@ int TAD_IncluirElementoFinal(Lista *lista, Cliente *cliente)
 	if(nodo == NULL) return TAD_LISTA_INEXISTENTE;
 	nodo->cliente = *cliente;
 	nodo->prox = NULL;
-	if(lista->inicio == NULL)
+	if(TAD_VerificarListaVazia(lista))
 	{
 		lista->inicio = nodo;
 	}
@@ -106,7 +106,25 @@ int TAD_IncluirElementoFinal(Lista *lista, Cliente *cliente)
 int TAD_IncluirElementoOrdenada(Lista *lista, Cliente *cliente)
 {
 	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	//	Code
+	Nodo *nodo = (Nodo*) malloc(sizeof(Nodo));
+	if(nodo == NULL) return TAD_LISTA_INEXISTENTE;
+	nodo->cliente = *cliente;
+	nodo->prox = NULL;
+	if(TAD_VerificarListaVazia(lista))
+	{
+		lista->inicio = nodo;
+	}
+	else
+	{
+		Nodo *no_anterior = NULL, *no_atual = lista->inicio;
+		while(no_atual != NULL && no_atual->cliente.codigo < cliente->codigo)
+		{
+			no_anterior = no_atual;
+			no_atual = no_atual->prox;
+		}
+		no_anterior->prox = nodo;
+		nodo->prox = no_anterior->prox;
+	}
 	return TAD_LISTA_SUCESSO;
 }
 
