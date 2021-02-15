@@ -148,7 +148,7 @@ int TAD_ExcluirElementoFinal(Lista *lista)
 		nodo_anterior = nodo;
 		nodo = nodo->prox;
 	}
-	if(nodo = lista->inicio)
+	if(nodo == lista->inicio)
 	{
 		lista->inicio = NULL;
 	}
@@ -174,7 +174,7 @@ int TAD_ExcluirElementoCodigo(Lista *lista, int codigo)
 	{
 		return TAD_ELEMENTO_INEXISTENTE;
 	}
-	if(nodo = lista->inicio)
+	if(nodo == lista->inicio)
 	{
 		lista->inicio = NULL;
 	}
@@ -192,7 +192,7 @@ int TAD_ObterElementoPosicao(Lista *lista, Cliente *cliente, int posicao)
 	if(posicao < TAD_LISTA_INICIO) return TAD_ELEMENTO_INEXISTENTE;
 	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
 	Nodo *nodo = lista->inicio;
-	int i = TAD_LISTA_INICIO + 1;
+	int i = TAD_LISTA_INICIO;
 	while(nodo != NULL && i < posicao)
 	{
 		nodo = nodo->prox;
