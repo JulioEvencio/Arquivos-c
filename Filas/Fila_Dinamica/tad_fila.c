@@ -34,7 +34,18 @@ Fila *TAD_CriarFila(void)
 
 int TAD_LiberarFila(Fila *fila)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    Nodo *nodo;
+    while(fila->inicio != NULL)
+    {
+        nodo = fila->inicio;
+        fila->inicio = nodo->prox;
+        free(nodo);
+    }
+    fila->inicio = NULL;
+    fila->final = NULL;
+    free(fila);
+    return TAD_FILA_SUCESSO;
 }
 
 int TAD_VerificarFilaTamanho(Fila *fila)
