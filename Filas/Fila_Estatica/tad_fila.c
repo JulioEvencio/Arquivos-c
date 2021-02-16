@@ -71,3 +71,11 @@ int TAD_ExcluirElemento(Fila *fila)
     fila->tamanho++;
     return TAD_FILA_SUCESSO;
 }
+
+int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento)
+{
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
+    *elemento = fila->elemento[fila->inicio];
+    return TAD_FILA_SUCESSO;
+}
