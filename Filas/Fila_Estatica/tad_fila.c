@@ -27,3 +27,10 @@ Fila *TAD_CriarFila(void)
     }
     return fila;
 }
+
+int TAD_LiberarFila(Fila *fila)
+{
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    free(fila);
+    return TAD_FILA_SUCESSO;
+}

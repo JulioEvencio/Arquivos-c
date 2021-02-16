@@ -24,5 +24,6 @@ typedef struct tipo_elemento Elemento;
 
 /*  Funcoes */
 Fila *TAD_CriarFila(void);
+int TAD_LiberarFila(Fila *fila);
 
 #endif
