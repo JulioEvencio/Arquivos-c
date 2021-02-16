@@ -23,5 +23,6 @@ typedef struct tipo_fila Fila;
 typedef struct tipo_elemento Elemento;
 
 /*  Funcoes */
+Fila *TAD_CriarFila(void);
 
 #endif
