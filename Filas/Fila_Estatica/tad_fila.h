@@ -25,5 +25,8 @@ typedef struct tipo_elemento Elemento;
 /*  Funcoes */
 Fila *TAD_CriarFila(void);
 int TAD_LiberarFila(Fila *fila);
+int TAD_VerificarFilaTamanho(Fila *fila);
+int TAD_VerificarFilaCheia(Fila *fila);
+int TAD_VerificarFilaVazia(Fila *fila);
 
 #endif

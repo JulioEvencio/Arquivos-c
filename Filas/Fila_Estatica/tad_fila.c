@@ -34,3 +34,21 @@ int TAD_LiberarFila(Fila *fila)
     free(fila);
     return TAD_FILA_SUCESSO;
 }
+
+int TAD_VerificarFilaTamanho(Fila *fila)
+{
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    return fila->tamanho;
+}
+
+int TAD_VerificarFilaCheia(Fila *fila)
+{
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    return fila->tamanho == TAD_FILA_TAMANHO_MAX;
+}
+
+int TAD_VerificarFilaVazia(Fila *fila)
+{
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    return fila->tamanho == _TAD_LISTA_TAMANHO_INICIO;
+}
