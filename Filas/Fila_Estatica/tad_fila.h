@@ -28,5 +28,7 @@ int TAD_LiberarFila(Fila *fila);
 int TAD_VerificarFilaTamanho(Fila *fila);
 int TAD_VerificarFilaCheia(Fila *fila);
 int TAD_VerificarFilaVazia(Fila *fila);
+int TAD_IncluirElemento(Fila *fila, Elemento *elemento);
+int TAD_ExcluirElemento(Fila *fila);
 
 #endif
