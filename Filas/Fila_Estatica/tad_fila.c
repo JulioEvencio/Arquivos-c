@@ -79,3 +79,11 @@ int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento)
     *elemento = fila->elemento[fila->inicio];
     return TAD_FILA_SUCESSO;
 }
+
+int TAD_FormatarFila(Fila *fila)
+{
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
+    fila->tamanho = _TAD_FILA_TAMANHO_INICIO;
+    return TAD_FILA_SUCESSO;
+}
