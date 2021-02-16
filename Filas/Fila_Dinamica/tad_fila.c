@@ -64,7 +64,18 @@ int TAD_VerificarFilaTamanho(Fila *fila)
 int TAD_VerificarFilaCheia(Fila *fila)
 {
     if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    return 0;
+    int cheia;
+    Nodo *nodo = (Nodo*) malloc(sizeof(Nodo));
+    if(nodo == NULL)
+    {
+        cheia = 1;
+    }
+    else
+    {
+        cheia = 0;
+    }
+    free(nodo);
+    return cheia;
 }
 
 int TAD_VerificarFilaVazia(Fila *fila)
