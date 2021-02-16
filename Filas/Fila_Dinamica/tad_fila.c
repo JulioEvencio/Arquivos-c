@@ -9,7 +9,7 @@
 /*  Estruturas */
 struct tipo_nodo
 {
-    Elemento *elemento;
+    Elemento elemento;
     struct tipo_nodo *prox;
 };
 typedef struct tipo_nodo Nodo;
@@ -75,12 +75,33 @@ int TAD_VerificarFilaVazia(Fila *fila)
 
 int TAD_IncluirElemento(Fila *fila, Elemento *elemento)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    if(elemento == NULL) return TAD_ELEMENTO_INEXISTENTE;
+    Nodo *no = (Nodo*) malloc(sizeof(Nodo));
+    if(no == NULL) return TAD_FILA_INEXISTENTE;
+    no->elemento = *elemento;
+    no->prox = NULL;
+    if(TAD_VerificarFilaVazia(fila))
+    {
+        fila->inicio = no;
+    }
+    else
+    {
+        fila->final->prox = no;
+    }
+    fila->final = no;
+    return TAD_FILA_SUCESSO;
 }
 
 int TAD_ExcluirElemento(Fila *fila)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
+    Nodo *nodo = fila->inicio;
+    fila->inicio = nodo->prox;
+    free(nodo);
+    if(TAD_VerificarFilaVazia(fila)) fila->final = NULL;
+    return TAD_FILA_SUCESSO;
 }
 
 int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento)
