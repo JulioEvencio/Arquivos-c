@@ -23,7 +23,13 @@ struct tipo_fila
 /*  Funcoes */
 Fila *TAD_CriarFila(void)
 {
-    //  Code
+    Fila *fila = (Fila*) malloc(sizeof(Fila));
+    if(fila != NULL)
+    {
+        fila->inicio = NULL;
+        fila->final = NULL;
+    }
+    return fila;
 }
 
 int TAD_LiberarFila(Fila *fila)
