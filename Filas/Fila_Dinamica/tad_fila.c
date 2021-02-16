@@ -7,83 +7,61 @@
 #define _TAD_FILA_TAMANHO_INICIO 0
 
 /*  Estruturas */
+struct tipo_nodo
+{
+    Elemento *elemento;
+    struct tipo_nodo *prox;
+};
+typedef struct tipo_nodo Nodo;
+
 struct tipo_fila
 {
-    int tamanho;
-    int inicio;
-    int final;
-    Elemento elemento[TAD_FILA_TAMANHO_MAX];
+    Nodo *inicio;
+    Nodo *final;
 };
 
 /*  Funcoes */
 Fila *TAD_CriarFila(void)
 {
-    Fila *fila = (Fila*) malloc(sizeof(Fila));
-    if(fila != NULL)
-    {
-        fila->tamanho = _TAD_FILA_TAMANHO_INICIO;
-        fila->inicio = _TAD_FILA_INICIO;
-        fila->final = _TAD_FILA_FINAL;
-    }
-    return fila;
+    //  Code
 }
 
 int TAD_LiberarFila(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    free(fila);
-    return TAD_FILA_SUCESSO;
+    //  Code
 }
 
 int TAD_VerificarFilaTamanho(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    return fila->tamanho;
+    //  Code
 }
 
 int TAD_VerificarFilaCheia(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    return fila->tamanho == TAD_FILA_TAMANHO_MAX;
+    //  Code
 }
 
 int TAD_VerificarFilaVazia(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    return fila->tamanho == _TAD_FILA_TAMANHO_INICIO;
+    //  Code
 }
 
 int TAD_IncluirElemento(Fila *fila, Elemento *elemento)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    if(TAD_VerificarFilaCheia(fila)) return TAD_FILA_CHEIA;
-    fila->elemento[fila->final] = *elemento;
-    fila->final = (fila->final + 1) % TAD_FILA_TAMANHO_MAX;
-    fila->tamanho++;
-    return TAD_FILA_SUCESSO;
+    //  Code
 }
 
 int TAD_ExcluirElemento(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
-    fila->inicio = (fila->inicio + 1) % TAD_FILA_TAMANHO_MAX;
-    fila->tamanho++;
-    return TAD_FILA_SUCESSO;
+    //  Code
 }
 
 int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
-    *elemento = fila->elemento[fila->inicio];
-    return TAD_FILA_SUCESSO;
+    //  Code
 }
 
 int TAD_FormatarFila(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
-    fila->tamanho = _TAD_FILA_TAMANHO_INICIO;
-    return TAD_FILA_SUCESSO;
+    //  Code
 }
