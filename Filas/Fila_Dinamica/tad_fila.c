@@ -106,7 +106,11 @@ int TAD_ExcluirElemento(Fila *fila)
 
 int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    if(elemento == NULL) return TAD_ELEMENTO_INEXISTENTE;
+    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
+    *elemento = fila->inicio->elemento;
+    return TAD_FILA_SUCESSO;
 }
 
 int TAD_FormatarFila(Fila *fila)
