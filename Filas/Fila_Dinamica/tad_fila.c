@@ -89,7 +89,7 @@ int TAD_IncluirElemento(Fila *fila, Elemento *elemento)
     if(fila == NULL) return TAD_FILA_INEXISTENTE;
     if(elemento == NULL) return TAD_ELEMENTO_INEXISTENTE;
     Nodo *no = (Nodo*) malloc(sizeof(Nodo));
-    if(no == NULL) return TAD_FILA_INEXISTENTE;
+    if(no == NULL) return TAD_FILA_CHEIA;
     no->elemento = *elemento;
     no->prox = NULL;
     if(TAD_VerificarFilaVazia(fila))

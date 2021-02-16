@@ -2,7 +2,7 @@
 #define TAD_FILA_H_INCLUDED
 
 /*  Constantes */
-#define NOME_TAMANHO 80
+#define NOME_TAMANHO 10
 #define TAD_FILA_TAMANHO_MAX 100
 //	Erros
 #define TAD_FILA_SUCESSO 0
@@ -15,7 +15,8 @@
 /*  Estruturas */
 struct tipo_elemento
 {
-    int n;
+    char nome[NOME_TAMANHO];
+    int numero;
 };
 
 /*  Typedef */
