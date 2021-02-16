@@ -50,17 +50,27 @@ int TAD_LiberarFila(Fila *fila)
 
 int TAD_VerificarFilaTamanho(Fila *fila)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    int tamanho = _TAD_FILA_INICIO;
+    Nodo *nodo = fila->inicio;;
+    while(nodo != NULL)
+    {
+        nodo = nodo->prox;
+        tamanho++;
+    }
+    return tamanho;
 }
 
 int TAD_VerificarFilaCheia(Fila *fila)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    return 0;
 }
 
 int TAD_VerificarFilaVazia(Fila *fila)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    return fila->inicio == NULL;
 }
 
 int TAD_IncluirElemento(Fila *fila, Elemento *elemento)
