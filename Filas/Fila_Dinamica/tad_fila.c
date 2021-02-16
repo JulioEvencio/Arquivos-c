@@ -115,5 +115,15 @@ int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento)
 
 int TAD_FormatarFila(Fila *fila)
 {
-    //  Code
+    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    Nodo *nodo;
+    while(fila->inicio != NULL)
+    {
+        nodo = fila->inicio;
+        fila->inicio = nodo->prox;
+        free(nodo);
+    }
+    fila->inicio = NULL;
+    fila->final = NULL;
+    return TAD_FILA_SUCESSO;
 }
