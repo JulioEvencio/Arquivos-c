@@ -15,7 +15,8 @@
 /*  Estruturas */
 struct tipo_elemento
 {
-    int n;
+    char nome[NOME_TAMANHO];
+    int numero;
 };
 
 /*  Typedef */
