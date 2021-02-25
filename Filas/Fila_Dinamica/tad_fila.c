@@ -126,5 +126,7 @@ int FILA_FormatarFila(Fila *fila)
         fila->inicio = fila->inicio->prox;
         free(nodo);
     }
+    fila->fim = NULL;
+    fila->tamanho = 0;
     return 0;
 }
