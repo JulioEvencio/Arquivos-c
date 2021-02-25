@@ -1,181 +1,98 @@
 #include <stdlib.h>
 #include "tad_lista.h"
 
-/*	Estruturas */
+/*  Estruturas */
 struct tipo_lista
 {
-	int elementos;
-	Cliente cliente[TAD_LISTA_TAMANHO_MAX];
+    int tamanho;
+    int tamanho_max;
+    Elemento *elemento;
 };
 
-/*	Funcoes */
-Lista *TAD_CriarLista(void)
+/*  Funcoes */
+Lista *LISTA_CriarLista(int tamanho_max)
 {
-	Lista *lista = (Lista*) malloc(sizeof(Lista));
-	if(lista != NULL)
-	{
-		lista->elementos = TAD_LISTA_INICIO;
-	}
-	return lista;
+    Lista *lista = (Lista*) malloc(sizeof(Lista));
+    if(lista != NULL)
+    {
+        lista->tamanho = 0;
+        lista->tamanho_max = tamanho_max;
+        lista->elemento = (Elemento*) malloc(sizeof(Elemento) * lista->tamanho_max);
+        if(lista->elemento == NULL)
+        {
+            free(lista);
+            lista = NULL;
+        }
+    }
+    return lista;
 }
 
-int TAD_LiberarLista(Lista *lista)
+int LISTA_LiberarLista(Lista *lista)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	free(lista);
-	return TAD_LISTA_SUCESSO;
+    if(lista == NULL) return -1;
+    free(lista->elemento);
+    free(lista);
+    return 0;
 }
 
-int TAD_VerificarListaTamanho(Lista *lista)
+int LISTA_VerificarTamanho(Lista *lista)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	return lista->elementos;
+    if(lista == NULL) return -1;
+    return lista->tamanho;
 }
 
-int TAD_VerificarListaCheia(Lista *lista)
+int LISTA_VerificarListaCheia(Lista *lista)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	return lista->elementos == TAD_LISTA_TAMANHO_MAX;
+    if(lista == NULL) return -1;
+    return (lista->tamanho == lista->tamanho_max);
 }
 
-int TAD_VerificarListaVazia(Lista *lista)
+int LISTA_VerificarListaVazia(Lista *lista)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	return lista->elementos == TAD_LISTA_INICIO;
+    if(lista == NULL) return -1;
+    return (lista->tamanho == 0);
 }
 
-int TAD_IncluirElementoInicio(Lista *lista, Cliente *cliente)
+int LISTA_IncluirElemento(Lista *lista, Elemento *elemento)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(TAD_VerificarListaCheia(lista)) return TAD_LISTA_CHEIA;
-	for(int i = lista->elementos; i >= TAD_LISTA_INICIO; i--)
-	{
-		lista->cliente[i] = lista->cliente[i - 1];
-	}
-	lista->cliente[TAD_LISTA_INICIO] = *cliente;
-	lista->elementos++;
-	return TAD_LISTA_SUCESSO;
+    if(lista == NULL || elemento == NULL) return -1;
+    if(LISTA_VerificarListaCheia(lista)) return -1;
+    lista->elemento[lista->tamanho] = *elemento;
+    lista->tamanho++;
+    return 0;
 }
 
-int TAD_IncluirElementoFinal(Lista *lista, Cliente *cliente)
+int LISTA_ExcluirElemento(Lista *lista, int posicao)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(TAD_VerificarListaCheia(lista)) return TAD_LISTA_CHEIA;
-	lista->cliente[lista->elementos] = *cliente;
-	lista->elementos++;
-	return TAD_LISTA_SUCESSO;
+    if(lista == NULL) return -1;
+    if(posicao < 1 || posicao > lista->tamanho) return -1;
+    for(int i = posicao; i < lista->tamanho; i++)
+    {
+        lista->elemento[i - 1] = lista->elemento[i];
+    }
+    lista->tamanho--;
+    return 0;
 }
 
-int TAD_IncluirElementoOrdenada(Lista *lista, Cliente *cliente)
+int LISTA_AlterarElemento(Lista *lista, Elemento *elemento, int posicao)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(TAD_VerificarListaCheia(lista)) return TAD_LISTA_CHEIA;
-	int k, i = TAD_LISTA_INICIO;
-	while(i < lista->elementos && lista->cliente[i].codigo < cliente->codigo)
-	{
-		i++;
-	}
-	for(k = lista->elementos; k >= i; k--)
-	{
-		lista->cliente[k] = lista->cliente[k - 1];
-	}
-	lista->cliente[i] = *cliente;
-	lista->elementos++;
-	return TAD_LISTA_SUCESSO;
+    if(lista == NULL || elemento == NULL) return -1;
+    if(posicao < 1 || posicao > lista->tamanho) return -1;
+    lista->elemento[posicao - 1] = *elemento;
+    return 0;
 }
 
-int TAD_ExcluirElementoInicio(Lista *lista)
+int LISTA_ObterElemento(Lista *lista, Elemento *elemento, int posicao)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
-	for(int i = TAD_LISTA_INICIO; i < lista->elementos; i++)
-	{
-		lista->cliente[i] = lista->cliente[i + 1];
-	}
-	lista->elementos--;
-	return TAD_LISTA_SUCESSO;
+    if(lista == NULL || elemento == NULL) return -1;
+    if(posicao < 1 || posicao > lista->tamanho) return -1;
+    *elemento = lista->elemento[posicao - 1];
+    return 0;
 }
 
-int TAD_ExcluirElementoFinal(Lista *lista)
+int LISTA_FormatarLista(Lista *lista)
 {
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
-	lista->elementos--;
-	return TAD_LISTA_SUCESSO;
-}
-
-int TAD_ExcluirElementoCodigo(Lista *lista, int codigo)
-{
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(TAD_VerificarListaVazia(lista)) return TAD_LISTA_VAZIA;
-	int k, i = TAD_LISTA_INICIO;
-	while(i < lista->elementos && lista->cliente[i].codigo != codigo)
-	{
-		i++;
-	}
-	if(i == lista->elementos)
-	{
-		return TAD_ELEMENTO_INEXISTENTE;
-	}
-	for(k = i; k < lista->elementos; k++)
-	{
-		lista->cliente[k] = lista->cliente[k + 1];
-	}
-	lista->elementos--;
-	return TAD_LISTA_SUCESSO;
-}
-
-int TAD_ObterElementoPosicao(Lista *lista, Cliente *cliente, int posicao)
-{
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(posicao < TAD_LISTA_INICIO || posicao > lista->elementos) return TAD_POSICAO_INVALIDA;
-	*cliente = lista->cliente[posicao];
-	return TAD_LISTA_SUCESSO;
-}
-
-int TAD_ObterElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
-{
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	int i = TAD_LISTA_INICIO;
-	while(i < lista->elementos && lista->cliente[i].codigo != codigo)
-	{
-		i++;
-	}
-	if(i == lista->elementos)
-	{
-		return TAD_ELEMENTO_INEXISTENTE;
-	}
-	*cliente = lista->cliente[i];
-	return TAD_LISTA_SUCESSO;
-}
-
-int TAD_AlterarElementoPosicao(Lista *lista, Cliente *cliente, int posicao)
-{
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	if(posicao < TAD_LISTA_INICIO || posicao > lista->elementos) return TAD_POSICAO_INVALIDA;
-	lista->cliente[posicao] = *cliente;
-	return TAD_LISTA_SUCESSO;
-}
-
-int TAD_AlterarElementoCodigo(Lista *lista, Cliente *cliente, int codigo)
-{
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	int i = TAD_LISTA_INICIO;
-	while(i < lista->elementos && lista->cliente[i].codigo != codigo)
-	{
-		i++;
-	}
-	if(i == lista->elementos)
-	{
-		return TAD_ELEMENTO_INEXISTENTE;
-	}
-	lista->cliente[i] = *cliente;
-	return TAD_LISTA_SUCESSO;
-}
-
-int TAD_FormatarLista(Lista *lista)
-{
-	if(lista == NULL) return TAD_LISTA_INEXISTENTE;
-	lista->elementos = TAD_LISTA_INICIO;
-	return TAD_LISTA_SUCESSO;
+    if(lista == NULL) return -1;
+    lista->tamanho = 0;
+    return 0;
 }
