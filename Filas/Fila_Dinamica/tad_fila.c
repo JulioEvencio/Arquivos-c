@@ -1,11 +1,6 @@
 #include <stdlib.h>
 #include "tad_fila.h"
 
-/*  Constantes */
-#define _TAD_FILA_INICIO 0
-#define _TAD_FILA_FINAL 0
-#define _TAD_FILA_TAMANHO_INICIO 0
-
 /*  Estruturas */
 struct tipo_nodo
 {
@@ -16,125 +11,120 @@ typedef struct tipo_nodo Nodo;
 
 struct tipo_fila
 {
+    int tamanho;
     Nodo *inicio;
-    Nodo *final;
+    Nodo *fim;
 };
 
 /*  Funcoes */
-Fila *TAD_CriarFila(void)
+Fila *FILA_CriarFila(void)
 {
     Fila *fila = (Fila*) malloc(sizeof(Fila));
     if(fila != NULL)
     {
+        fila->tamanho = 0;
         fila->inicio = NULL;
-        fila->final = NULL;
+        fila->fim = NULL;
     }
     return fila;
 }
 
-int TAD_LiberarFila(Fila *fila)
+int FILA_LiberarFila(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    if(fila == NULL) return -1;
     Nodo *nodo;
     while(fila->inicio != NULL)
     {
         nodo = fila->inicio;
-        fila->inicio = nodo->prox;
+        fila->inicio = fila->inicio->prox;
         free(nodo);
     }
-    fila->inicio = NULL;
-    fila->final = NULL;
     free(fila);
-    return TAD_FILA_SUCESSO;
+    return 0;
 }
 
-int TAD_VerificarFilaTamanho(Fila *fila)
+int FILA_VerificarTamanhoFila(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    int tamanho = _TAD_FILA_INICIO;
-    Nodo *nodo = fila->inicio;;
-    while(nodo != NULL)
-    {
-        nodo = nodo->prox;
-        tamanho++;
-    }
-    return tamanho;
+    if(fila == NULL) return -1;
+    return fila->tamanho;
 }
 
-int TAD_VerificarFilaCheia(Fila *fila)
+int FILA_VerificarFilaCheia(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    int cheia;
+    if(fila == NULL) return -1;
+    int fila_cheia;
     Nodo *nodo = (Nodo*) malloc(sizeof(Nodo));
     if(nodo == NULL)
     {
-        cheia = 1;
+        fila_cheia = 1;
     }
     else
     {
-        cheia = 0;
+        free(nodo);
+        fila_cheia = 0;
     }
-    free(nodo);
-    return cheia;
+    return fila_cheia;
 }
 
-int TAD_VerificarFilaVazia(Fila *fila)
+int FILA_VerificarFilaVazia(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    return fila->inicio == NULL;
+    if(fila == NULL) return -1;
+    return (fila->inicio == NULL);
 }
 
-int TAD_IncluirElemento(Fila *fila, Elemento *elemento)
+int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    if(elemento == NULL) return TAD_ELEMENTO_INEXISTENTE;
-    Nodo *no = (Nodo*) malloc(sizeof(Nodo));
-    if(no == NULL) return TAD_FILA_CHEIA;
-    no->elemento = *elemento;
-    no->prox = NULL;
-    if(TAD_VerificarFilaVazia(fila))
+    if(fila == NULL || elemento == NULL) return -1;
+    if(FILA_VerificarFilaCheia(fila)) return -1;
+    Nodo *nodo = (Nodo*) malloc(sizeof(Nodo));
+    nodo->elemento = *elemento;
+    nodo->prox = NULL;
+    if(fila->inicio == NULL)
     {
-        fila->inicio = no;
+        fila->inicio = nodo;
     }
-    else
+    if(fila->fim != NULL)
     {
-        fila->final->prox = no;
+        fila->fim->prox = nodo;
     }
-    fila->final = no;
-    return TAD_FILA_SUCESSO;
+    fila->fim = nodo;
+    fila->tamanho++;
+    return 0;
 }
 
-int TAD_ExcluirElemento(Fila *fila)
+int FILA_ExcluirElemento(Fila *fila, Elemento *elemento)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
+    if(fila == NULL) return -1;
+    if(FILA_VerificarFilaVazia(fila)) return -1;
     Nodo *nodo = fila->inicio;
-    fila->inicio = nodo->prox;
+    fila->inicio = fila->inicio->prox;
+    *elemento = nodo->elemento;
     free(nodo);
-    if(TAD_VerificarFilaVazia(fila)) fila->final = NULL;
-    return TAD_FILA_SUCESSO;
+    if(fila->inicio == NULL)
+    {
+        fila->fim = NULL;
+    }
+    fila->tamanho--;
+    return 0;
 }
 
-int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento)
+int FILA_ObterElemento(Fila *fila, Elemento *elemento)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
-    if(elemento == NULL) return TAD_ELEMENTO_INEXISTENTE;
-    if(TAD_VerificarFilaVazia(fila)) return TAD_FILA_VAZIA;
+    if(fila == NULL || elemento == NULL) return -1;
+    if(FILA_VerificarFilaVazia(fila)) return -1;
     *elemento = fila->inicio->elemento;
-    return TAD_FILA_SUCESSO;
+    return 0;
 }
 
-int TAD_FormatarFila(Fila *fila)
+int FILA_FormatarFila(Fila *fila)
 {
-    if(fila == NULL) return TAD_FILA_INEXISTENTE;
+    if(fila == NULL) return -1;
     Nodo *nodo;
     while(fila->inicio != NULL)
     {
         nodo = fila->inicio;
-        fila->inicio = nodo->prox;
+        fila->inicio = fila->inicio->prox;
         free(nodo);
     }
-    fila->inicio = NULL;
-    fila->final = NULL;
-    return TAD_FILA_SUCESSO;
+    return 0;
 }

@@ -1,22 +1,13 @@
-#ifndef TAD_FILA_H_INCLUDED
-#define TAD_FILA_H_INCLUDED
+#ifndef TAD_LISTA_INCLUDED
+#define TAD_LISTA_INCLUDED
 
 /*  Constantes */
-#define NOME_TAMANHO 10
-#define TAD_FILA_TAMANHO_MAX 100
-//	Erros
-#define TAD_FILA_SUCESSO 0
-#define TAD_FILA_INEXISTENTE -1
-#define TAD_FILA_CHEIA -2
-#define TAD_FILA_VAZIA -3
-#define TAD_ELEMENTO_INEXISTENTE -4
-#define TAD_POSICAO_INVALIDA -5
 
 /*  Estruturas */
 struct tipo_elemento
 {
-    char nome[NOME_TAMANHO];
-    int numero;
+    int codigo;
+    char nome[80];
 };
 
 /*  Typedef */
@@ -24,14 +15,14 @@ typedef struct tipo_fila Fila;
 typedef struct tipo_elemento Elemento;
 
 /*  Funcoes */
-Fila *TAD_CriarFila(void);
-int TAD_LiberarFila(Fila *fila);
-int TAD_VerificarFilaTamanho(Fila *fila);
-int TAD_VerificarFilaCheia(Fila *fila);
-int TAD_VerificarFilaVazia(Fila *fila);
-int TAD_IncluirElemento(Fila *fila, Elemento *elemento);
-int TAD_ExcluirElemento(Fila *fila);
-int TAD_ObterElementoInicio(Fila *fila, Elemento *elemento);
-int TAD_FormatarFila(Fila *fila);
+Fila *FILA_CriarFila(void);
+int FILA_LiberarFila(Fila *fila);
+int FILA_VerificarTamanhoFila(Fila *fila);
+int FILA_VerificarFilaCheia(Fila *fila);
+int FILA_VerificarFilaVazia(Fila *fila);
+int FILA_IncluirElemento(Fila *fila, Elemento *elemento);
+int FILA_ExcluirElemento(Fila *fila, Elemento *elemento);
+int FILA_ObterElemento(Fila *fila, Elemento *elemento);
+int FILA_FormatarFila(Fila *fila);
 
 #endif
