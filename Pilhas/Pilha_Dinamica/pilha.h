@@ -18,7 +18,6 @@ struct Tipo_Nodo
 
 struct Tipo_Pilha
 {
-    int tamanho;
     Nodo *inicio;
 };
 typedef struct Tipo_Pilha Pilha;
@@ -28,14 +27,20 @@ int PILHA_InicialiarPilha(Pilha *pilha)
 {
     if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     pilha->inicio = NULL;
-    pilha->tamanho = 0;
     return PILHA_SUCESSO;
 }
 
 int PILHA_VerificarPilhaTamanho(Pilha *pilha)
 {
     if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
-    return pilha->tamanho;
+    int tamanho = 0;
+    Nodo *nodo = pilha->inicio;
+    while(nodo != NULL)
+    {
+        nodo = nodo->prox;
+        tamanho++;
+    }
+    return tamanho;
 }
 
 int PILHA_VerificarPilhaCheia(Pilha *pilha)
@@ -103,7 +108,6 @@ int PILHA_FormatarPilha(Pilha *pilha)
         pilha->inicio = pilha->inicio->prox;
         free(nodo);
     }
-    pilha->tamanho = 0;
     return PILHA_SUCESSO;
 }
 
