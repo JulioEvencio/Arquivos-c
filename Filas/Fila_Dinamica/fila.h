@@ -84,7 +84,7 @@ int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
     return FILA_SUCESSO;
 }
 
-int FILA_ExcluirElemento(Fila *fila, Elemento *elemento)
+int FILA_RemoverElemento(Fila *fila, Elemento *elemento)
 {
     if(fila == NULL) return FILA_ENDERECO_INVALIDO;
     if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
