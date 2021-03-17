@@ -85,4 +85,14 @@ int PILHA_DesempilharElemento(Pilha *pilha, Elemento *elemento)
     return PILHA_SUCESSO;
 }
 
+int PILHA_ObterElemento(Pilha *pilha, Elemento *elemento)
+{
+    if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
+    if(PILHA_VerificarPilhaVazia(pilha)) return PILHA_PILHA_VAZIA;
+    *elemento = pilha->inicio->elemento;
+    return PILHA_SUCESSO;
+}
+
+
+
 #endif
