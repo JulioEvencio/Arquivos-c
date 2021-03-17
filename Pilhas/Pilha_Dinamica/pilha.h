@@ -60,4 +60,16 @@ int PILHA_VerificarPilhaVazia(Pilha *pilha)
     return pilha->inicio == NULL;
 }
 
+int PILHA_IncluirElemento(Pilha *pilha, Elemento *elemento)
+{
+    if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
+    if(PILHA_VerificarPilhaCheia(pilha)) return PILHA_PILHA_CHEIA;
+    Nodo *nodo = malloc(sizeof(Nodo));
+    nodo->elemento = *elemento;
+    nodo->prox = pilha->inicio;
+    pilha->inicio = nodo;
+    pilha->tamanho++;
+    return PILHA_SUCESSO;
+}
+
 #endif
