@@ -29,4 +29,17 @@ int FILA_InicializarFila(Fila *fila)
     return FILA_SUCESSO;
 }
 
+int FILA_VerificarFilaTamanho(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    int tamanho = 0;
+    Nodo *nodo = fila->inicio;
+    while(nodo != NULL)
+    {
+        nodo = nodo->prox;
+        tamanho++;
+    }
+    return tamanho;
+}
+
 #endif
