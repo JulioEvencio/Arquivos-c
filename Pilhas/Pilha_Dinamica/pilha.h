@@ -54,4 +54,10 @@ int PILHA_VerificarPilhaCheia(Pilha *pilha)
     return pilha_cheia;
 }
 
+int PILHA_VerificarPilhaVazia(Pilha *pilha)
+{
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
+    return pilha->inicio == NULL;
+}
+
 #endif
