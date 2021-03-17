@@ -96,4 +96,12 @@ int FILA_ExcluirElemento(Fila *fila, Elemento *elemento)
     return FILA_SUCESSO;
 }
 
+int FILA_ObterElemento(Fila *fila, Elemento *elemento)
+{
+    if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    *elemento = fila->inicio->elemento;
+    return FILA_SUCESSO;
+}
+
 #endif
