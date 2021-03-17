@@ -21,4 +21,12 @@ struct Tipo_Fila
 };
 typedef struct Tipo_Fila Fila;
 
+int FILA_InicializarFila(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    fila->inicio = NULL;
+    fila->fim = NULL;
+    return FILA_SUCESSO;
+}
+
 #endif
