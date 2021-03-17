@@ -65,4 +65,23 @@ int FILA_VerificarFilaVazia(Fila *fila)
     return fila->inicio == NULL;
 }
 
+int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
+{
+    if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
+    if(FILA_VerificarFilaCheia(fila)) return FILA_FILA_CHEIA;
+    Nodo *nodo = malloc(sizeof(Nodo));
+    nodo->elemento = *elemento;
+    nodo->prox = NULL;
+    if(fila->inicio == NULL)
+    {
+        fila->inicio = nodo;
+    }
+    if(fila->fim != NULL)
+    {
+        fila->fim->prox = nodo;
+    }
+    fila->fim = nodo;
+    return 0;
+}
+
 #endif
