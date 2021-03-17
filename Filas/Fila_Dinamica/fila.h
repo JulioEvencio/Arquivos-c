@@ -59,4 +59,10 @@ int FILA_VerificarFilaCheia(Fila *fila)
     return fila_cheia;
 }
 
+int FILA_VerificarFilaVazia(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    return fila->inicio == NULL;
+}
+
 #endif
