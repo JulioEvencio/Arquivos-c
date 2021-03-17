@@ -84,4 +84,16 @@ int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
     return FILA_SUCESSO;
 }
 
+int FILA_ExcluirElemento(Fila *fila, Elemento *elemento)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    Nodo *nodo = fila->inicio;
+    fila->inicio = fila->inicio->prox;
+    *elemento = nodo->elemento;
+    free(nodo);
+    if(fila->inicio == NULL) fila->fim = NULL;
+    return FILA_SUCESSO;
+}
+
 #endif
