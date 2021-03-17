@@ -5,7 +5,8 @@
 #define LISTA_SUCESSO 0
 #define LISTA_ENDERECO_INVALIDO -1
 #define LISTA_LISTA_CHEIA -2
-#define LISTA_POSICAO_INEXISTENTE -3
+#define LISTA_LISTA_VAZIA -3
+#define LISTA_POSICAO_INEXISTENTE -4
 
 /*  Estruturas */
 typedef struct Tipo_Nodo Nodo;
@@ -79,6 +80,7 @@ int LISTA_IncluirElemento(Lista *lista, Elemento *elemento)
 int LISTA_ExcluirElemento(Lista *lista, int posicao)
 {
     if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(LISTA_VerificarListaVazia(lista)) return LISTA_LISTA_VAZIA;
     if(posicao < 1 || posicao > LISTA_VerificarListaTamanho(lista)) return LISTA_POSICAO_INEXISTENTE;
     Nodo *nodo_atual = lista->inicio;
     if(posicao == 1)
