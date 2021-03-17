@@ -23,7 +23,7 @@ struct Tipo_Pilha
 typedef struct Tipo_Pilha Pilha;
 
 /*  Funcoes */
-int FILA_InicialiarPilha(Pilha *pilha)
+int PILHA_InicialiarPilha(Pilha *pilha)
 {
     if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     pilha->inicio = NULL;
@@ -31,6 +31,10 @@ int FILA_InicialiarPilha(Pilha *pilha)
     return PILHA_SUCESSO;
 }
 
-
+int PILHA_VerificarPilhaTamanho(Pilha *pilha)
+{
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
+    return pilha->tamanho;
+}
 
 #endif
