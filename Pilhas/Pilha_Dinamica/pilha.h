@@ -5,7 +5,8 @@
 #define PILHA_SUCESSO 0
 #define PILHA_ENDERECO_INVALIDO -1
 #define PILHA_PILHA_CHEIA -2
-#define PILHA_POSICAO_INEXISTENTE -3
+#define PILHA_PILHA_VAZIA -3
+#define PILHA_POSICAO_INEXISTENTE -4
 
 /*  Estruturas */
 typedef struct Tipoo_Nodo Nodo;
@@ -60,7 +61,7 @@ int PILHA_VerificarPilhaVazia(Pilha *pilha)
     return pilha->inicio == NULL;
 }
 
-int PILHA_IncluirElemento(Pilha *pilha, Elemento *elemento)
+int PILHA_EmpilharElemento(Pilha *pilha, Elemento *elemento)
 {
     if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
     if(PILHA_VerificarPilhaCheia(pilha)) return PILHA_PILHA_CHEIA;
@@ -69,6 +70,18 @@ int PILHA_IncluirElemento(Pilha *pilha, Elemento *elemento)
     nodo->prox = pilha->inicio;
     pilha->inicio = nodo;
     pilha->tamanho++;
+    return PILHA_SUCESSO;
+}
+
+int PILHA_DesempilharElemento(Pilha *pilha, Elemento *elemento)
+{
+    if(pilha == NULL) return PILHA_POSICAO_INEXISTENTE;
+    if(PILHA_VerificarPilhaVazia(pilha)) return PILHA_PILHA_VAZIA;
+    Nodo *nodo = pilha->inicio;
+    pilha->inicio = pilha->inicio->prox;
+    *elemento = nodo->elemento;
+    free(nodo);
+    pilha->tamanho--;
     return PILHA_SUCESSO;
 }
 
