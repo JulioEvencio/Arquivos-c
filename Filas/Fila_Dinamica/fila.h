@@ -81,7 +81,7 @@ int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
         fila->fim->prox = nodo;
     }
     fila->fim = nodo;
-    return 0;
+    return FILA_SUCESSO;
 }
 
 #endif
