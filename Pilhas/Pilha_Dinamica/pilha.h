@@ -9,7 +9,7 @@
 #define PILHA_POSICAO_INEXISTENTE -4
 
 /*  Estruturas */
-typedef struct Tipoo_Nodo Nodo;
+typedef struct Tipo_Nodo Nodo;
 struct Tipo_Nodo
 {
     Elemento elemento;
@@ -23,7 +23,7 @@ struct Tipo_Pilha
 typedef struct Tipo_Pilha Pilha;
 
 /*  Funcoes */
-int PILHA_InicialiarPilha(Pilha *pilha)
+int PILHA_InicializarPilha(Pilha *pilha)
 {
     if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     pilha->inicio = NULL;
