@@ -105,6 +105,7 @@ int LISTA_ExcluirElemento(Lista *lista, int posicao)
 int LISTA_AlterarElemento(Lista *lista, Elemento *elemento, int posicao)
 {
     if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(LISTA_VerificarListaVazia(lista)) return LISTA_LISTA_VAZIA;
     if(posicao < 1 || posicao > LISTA_VerificarListaTamanho(lista)) return LISTA_POSICAO_INEXISTENTE;
     Nodo *nodo = lista->inicio;
     for(int i = 1; i < posicao; i++)
@@ -118,6 +119,7 @@ int LISTA_AlterarElemento(Lista *lista, Elemento *elemento, int posicao)
 int LISTA_ObterElemento(Lista *lista, Elemento *elemento, int posicao)
 {
     if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(LISTA_VerificarListaVazia(lista)) return LISTA_LISTA_VAZIA;
     if(posicao < 1 || posicao > LISTA_VerificarListaTamanho(lista)) return LISTA_POSICAO_INEXISTENTE;
     Nodo *nodo = lista->inicio;
     for(int i = 1; i < posicao; i++)
