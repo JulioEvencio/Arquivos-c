@@ -42,4 +42,21 @@ int FILA_VerificarFilaTamanho(Fila *fila)
     return tamanho;
 }
 
+int FILA_VerificarFilaCheia(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    int fila_cheia;
+    Nodo *nodo = malloc(sizeof(Nodo));
+    if(nodo == NULL)
+    {
+        fila_cheia = 1;
+    }
+    else
+    {
+        free(nodo);
+        fila_cheia = 0;
+    }
+    return fila_cheia;
+}
+
 #endif
