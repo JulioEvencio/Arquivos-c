@@ -37,4 +37,21 @@ int PILHA_VerificarPilhaTamanho(Pilha *pilha)
     return pilha->tamanho;
 }
 
+int PILHA_VerificarPilhaCheia(Pilha *pilha)
+{
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
+    int pilha_cheia;
+    Nodo *nodo = malloc(sizeof(Nodo));
+    if(nodo == NULL)
+    {
+        pilha_cheia = 1;
+    }
+    else
+    {
+        pilha_cheia = 0;
+    }
+    free(nodo);
+    return pilha_cheia;
+}
+
 #endif
