@@ -104,4 +104,18 @@ int FILA_ObterElemento(Fila *fila, Elemento *elemento)
     return FILA_SUCESSO;
 }
 
+int FILA_FormatarFila(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    Nodo *nodo;
+    while(fila->inicio != NULL)
+    {
+        nodo = fila->inicio;
+        fila->inicio = fila->inicio->prox;
+        free(nodo);
+    }
+    fila->fim = NULL;
+    return FILA_SUCESSO;
+}
+
 #endif
