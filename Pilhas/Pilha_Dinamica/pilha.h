@@ -74,7 +74,6 @@ int PILHA_EmpilharElemento(Pilha *pilha, Elemento *elemento)
     nodo->elemento = *elemento;
     nodo->prox = pilha->inicio;
     pilha->inicio = nodo;
-    pilha->tamanho++;
     return PILHA_SUCESSO;
 }
 
@@ -86,7 +85,6 @@ int PILHA_DesempilharElemento(Pilha *pilha, Elemento *elemento)
     pilha->inicio = pilha->inicio->prox;
     *elemento = nodo->elemento;
     free(nodo);
-    pilha->tamanho--;
     return PILHA_SUCESSO;
 }
 
