@@ -58,8 +58,17 @@ int LISTA_VerificarListaCheia(Lista *lista)
 
 int LISTA_VerificarListaVazia(Lista *lista)
 {
-    if(lista == NULL) return -1;
+    if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
     return lista->tamanho == 0;
+}
+
+int LISTA_IncluirElemento(Lista *lista, Elemento *elemento)
+{
+    if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(LISTA_VerificarListaCheia(lista)) return LISTA_LISTA_CHEIA;
+    lista->elemento[lista->tamanho] = *elemento;
+    lista->tamanho++;
+    return LISTA_SUCESSO;
 }
 
 #endif
