@@ -7,6 +7,7 @@
 #define LISTA_LISTA_CHEIA -2
 #define LISTA_LISTA_VAZIA -3
 #define LISTA_POSICAO_INEXISTENTE -4
+#define LISTA_TAMANHO_INVALIDO -5
 
 /*  Estruturas */
 struct Tipo_Lista
@@ -18,29 +19,21 @@ struct Tipo_Lista
 typedef struct Tipo_Lista Lista;
 
 /*  Funcoes */
-Lista *LISTA_CriarLista(int tamanho_max)
+int LISTA_InicializarLista(Lista *lista, int tamanho_max)
 {
-    if(tamanho_max < 1) return NULL;
-    Lista *lista = malloc(sizeof(Lista));
-    if(lista != NULL)
-    {
-        lista->tamanho = 0;
-        lista->tamanho_max = tamanho_max;
-        lista->elemento = malloc(sizeof(Elemento) * lista->tamanho_max);
-        if(lista->elemento == NULL)
-        {
-            free(lista);
-            lista = NULL;
-        }
-    }
-    return lista;
+    if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(tamanho_max < 1) return LISTA_TAMANHO_INVALIDO;
+    lista->tamanho = 0;
+    lista->tamanho_max = tamanho_max;
+    lista->elemento = malloc(sizeof(Elemento) * lista->tamanho_max);
+    if(lista->elemento == NULL) return LISTA_LISTA_CHEIA;
+    return LISTA_SUCESSO;
 }
 
 int LISTA_LiberarLista(Lista *lista)
 {
     if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
     free(lista->elemento);
-    free(lista);
     return LISTA_SUCESSO;
 }
 
