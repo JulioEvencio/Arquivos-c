@@ -50,4 +50,10 @@ int LISTA_VerificarTamanho(Lista *lista)
     return lista->tamanho;
 }
 
+int LISTA_VerificarListaCheia(Lista *lista)
+{
+    if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
+    return lista->tamanho == lista->tamanho_max;
+}
+
 #endif
