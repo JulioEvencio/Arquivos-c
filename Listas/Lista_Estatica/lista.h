@@ -102,4 +102,11 @@ int LISTA_ObterElemento(Lista *lista, Elemento *elemento, int posicao)
     return LISTA_SUCESSO;
 }
 
+int LISTA_FormatarLista(Lista *lista)
+{
+    if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
+    lista->tamanho = 0;
+    return LISTA_SUCESSO;
+}
+
 #endif
