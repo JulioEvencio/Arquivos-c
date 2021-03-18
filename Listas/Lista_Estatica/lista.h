@@ -18,5 +18,22 @@ struct Tipo_Lista
 typedef struct Tipo_Lista Lista;
 
 /*  Funcoes */
+Lista *LISTA_CriarLista(int tamanho_max)
+{
+    if(tamanho_max < 1) return NULL;
+    Lista *lista = malloc(sizeof(Lista));
+    if(lista != NULL)
+    {
+        lista->tamanho = 0;
+        lista->tamanho_max = tamanho_max;
+        lista->elemento = malloc(sizeof(Elemento) * lista->tamanho_max);
+        if(lista->elemento == NULL)
+        {
+            free(lista);
+            lista = NULL;
+        }
+    }
+    return lista;
+}
 
 #endif
