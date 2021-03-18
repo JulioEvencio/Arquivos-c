@@ -44,4 +44,10 @@ int LISTA_LiberarLista(Lista *lista)
     return LISTA_SUCESSO;
 }
 
+int LISTA_VerificarTamanho(Lista *lista)
+{
+    if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
+    return lista->tamanho;
+}
+
 #endif
