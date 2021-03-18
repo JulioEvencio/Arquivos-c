@@ -36,4 +36,12 @@ Lista *LISTA_CriarLista(int tamanho_max)
     return lista;
 }
 
+int LISTA_LiberarLista(Lista *lista)
+{
+    if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
+    free(lista->elemento);
+    free(lista);
+    return LISTA_SUCESSO;
+}
+
 #endif
