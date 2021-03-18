@@ -84,4 +84,13 @@ int LISTA_ExcluirElemento(Lista *lista, int posicao)
     return LISTA_SUCESSO;
 }
 
+int LISTA_AlterarElemento(Lista *lista, Elemento *elemento, int posicao)
+{
+    if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(LISTA_VerificarListaVazia(lista)) return LISTA_LISTA_VAZIA;
+    if(posicao < 1 || posicao > lista->tamanho) return LISTA_POSICAO_INEXISTENTE;
+    lista->elemento[posicao - 1] = *elemento;
+    return LISTA_SUCESSO;
+}
+
 #endif
