@@ -44,7 +44,7 @@ int LISTA_LiberarLista(Lista *lista)
     return LISTA_SUCESSO;
 }
 
-int LISTA_VerificarTamanho(Lista *lista)
+int LISTA_VerificarListaTamanho(Lista *lista)
 {
     if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
     return lista->tamanho;
@@ -54,6 +54,12 @@ int LISTA_VerificarListaCheia(Lista *lista)
 {
     if(lista == NULL) return LISTA_ENDERECO_INVALIDO;
     return lista->tamanho == lista->tamanho_max;
+}
+
+int LISTA_VerificarListaVazia(Lista *lista)
+{
+    if(lista == NULL) return -1;
+    return lista->tamanho == 0;
 }
 
 #endif
