@@ -41,4 +41,10 @@ int FILA_LiberarFila(Fila *fila)
     return FILA_SUCESSO;
 }
 
+int FILA_VerificarFilaTamanho(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    return fila->tamanho;
+}
+
 #endif
