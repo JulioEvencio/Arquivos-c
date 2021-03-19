@@ -34,4 +34,11 @@ int FILA_InicializarFila(Fila *fila, int tamanho)
     return FILA_SUCESSO;
 }
 
+int FILA_LiberarFila(Fila *fila)
+{
+    if(fila == NULL || fila->elemento == NULL) return FILA_ENDERECO_INVALIDO;
+    free(fila->elemento);
+    return FILA_SUCESSO;
+}
+
 #endif
