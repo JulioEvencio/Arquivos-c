@@ -59,4 +59,14 @@ int FILA_VerificarFilaVazia(Fila *fila)
     return fila->tamanho == 0;
 }
 
+int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    if(FILA_VerificarFilaCheia(fila)) return FILA_FILA_CHEIA;
+    fila->elemento[fila->fim] = *elemento;
+    fila->fim = (fila->fim + 1) % fila->tamanho_max;
+    fila->tamanho++;
+    return FILA_SUCESSO;
+}
+
 #endif
