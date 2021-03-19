@@ -69,4 +69,14 @@ int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
     return FILA_SUCESSO;
 }
 
+int FILA_RemoverElemento(Fila *fila, Elemento *elemento)
+{
+    if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    *elemento = fila->elemento[fila->inicio];
+    fila->inicio = (fila->inicio + 1) % fila->tamanho_max;
+    fila->tamanho++;
+    return FILA_SUCESSO;
+}
+
 #endif
