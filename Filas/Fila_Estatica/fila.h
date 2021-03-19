@@ -79,4 +79,12 @@ int FILA_RemoverElemento(Fila *fila, Elemento *elemento)
     return FILA_SUCESSO;
 }
 
+int FILA_ObterElementoInicio(Fila *fila, Elemento *elemento)
+{
+    if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    *elemento = fila->elemento[fila->inicio];
+    return FILA_SUCESSO;
+}
+
 #endif
