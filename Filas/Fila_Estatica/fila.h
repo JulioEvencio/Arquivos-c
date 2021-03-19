@@ -47,4 +47,10 @@ int FILA_VerificarFilaTamanho(Fila *fila)
     return fila->tamanho;
 }
 
+int FILA_VerificarFilaCheia(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    return fila->tamanho == fila->tamanho_max;
+}
+
 #endif
