@@ -87,4 +87,14 @@ int FILA_ObterElementoInicio(Fila *fila, Elemento *elemento)
     return FILA_SUCESSO;
 }
 
+int FILA_FormatarFila(Fila *fila)
+{
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    fila->tamanho = 0;
+    fila->inicio = 0;
+    fila->fim = 0;
+    return FILA_SUCESSO;
+}
+
 #endif
