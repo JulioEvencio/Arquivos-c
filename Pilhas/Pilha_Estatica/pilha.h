@@ -79,4 +79,11 @@ int PILHA_ObterElemento(Pilha *pilha, Elemento *elemento)
     return PILHA_SUCESSO;
 }
 
+int PILHA_FormatarPilha(Pilha *pilha)
+{
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
+    pilha->tamanho = 0;
+    return PILHA_SUCESSO;
+}
+
 #endif
