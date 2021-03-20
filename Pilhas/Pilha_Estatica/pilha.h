@@ -30,4 +30,11 @@ int PILHA_InicializarPilha(Pilha *pilha, int tamanho)
     return PILHA_SUCESSO;
 }
 
+int PILHA_LiberarPilha(Pilha *pilha)
+{
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
+    if(pilha->elemento != NULL) free(pilha->elemento);
+    return PILHA_SUCESSO;
+}
+
 #endif
