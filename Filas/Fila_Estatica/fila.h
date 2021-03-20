@@ -6,9 +6,8 @@
 #define FILA_ENDERECO_INVALIDO -1
 #define FILA_CHEIA -2
 #define FILA_VAZIA -3
-#define FILA_POSICAO_INEXISTENTE -4
-#define FILA_TAMANHO_INVALIDO -5
-#define FILA_SEM_MEMORIA -6
+#define FILA_TAMANHO_INVALIDO -4
+#define FILA_SEM_MEMORIA -5
 
 /*  Estruturas */
 struct Tipo_Fila

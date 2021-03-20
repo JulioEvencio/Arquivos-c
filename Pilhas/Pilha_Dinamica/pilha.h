@@ -6,7 +6,6 @@
 #define PILHA_ENDERECO_INVALIDO -1
 #define PILHA_CHEIA -2
 #define PILHA_VAZIA -3
-#define PILHA_POSICAO_INEXISTENTE -4
 
 /*  Estruturas */
 typedef struct Pilha_Nodo Nodo;

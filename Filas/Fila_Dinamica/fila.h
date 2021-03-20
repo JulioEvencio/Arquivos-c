@@ -5,7 +5,6 @@
 #define FILA_ENDERECO_INVALIDO -1
 #define FILA_CHEIA -2
 #define FILA_VAZIA -3
-#define FILA_POSICAO_INEXISTENTE -4
 
 typedef struct Fila_Nodo Nodo;
 struct Fila_Nodo
