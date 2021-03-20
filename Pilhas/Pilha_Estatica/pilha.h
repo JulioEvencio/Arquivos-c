@@ -37,4 +37,10 @@ int PILHA_LiberarPilha(Pilha *pilha)
     return PILHA_SUCESSO;
 }
 
+int PILHA_VerificarPilhaTamanho(Pilha *pilha)
+{
+    if(pilha == NULL) return PILHA_TAMANHO_INVALIDO;
+    return pilha->tamanho;
+}
+
 #endif
