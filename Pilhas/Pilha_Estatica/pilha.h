@@ -55,4 +55,13 @@ int PILHA_VerificarPilhaVazia(Pilha *pilha)
     return pilha->tamanho == 0;
 }
 
+int PILHA_EmpilharElemento(Pilha *pilha, Elemento *elemento)
+{
+    if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
+    if(PILHA_VerificarPilhaCheia(pilha)) return PILHA_CHEIA;
+    pilha->elemento[pilha->tamanho] = *elemento;
+    pilha->tamanho++;
+    return PILHA_SUCESSO;
+}
+
 #endif
