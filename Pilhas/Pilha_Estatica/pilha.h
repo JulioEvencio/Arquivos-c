@@ -49,4 +49,10 @@ int PILHA_VerificarPilhaCheia(Pilha *pilha)
     return pilha->tamanho == pilha->tamanho_max;
 }
 
+int PILHA_VerificarPilhaVazia(Pilha *pilha)
+{
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
+    return pilha->tamanho == 0;
+}
+
 #endif
