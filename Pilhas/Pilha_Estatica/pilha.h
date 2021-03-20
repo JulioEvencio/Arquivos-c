@@ -10,6 +10,13 @@
 #define PILHA_TAMANHO_INVALIDO -5
 
 /*  Estruturas */
+struct Tipo_Pilha
+{
+    int tamanho;
+    int tamanho_max;
+    Elemento *elemento;
+};
+typedef struct Tipo_Pilha Pilha;
 
 /*  Funcoes*/
 
