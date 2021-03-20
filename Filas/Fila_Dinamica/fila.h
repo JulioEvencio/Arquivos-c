@@ -3,12 +3,12 @@
 
 #define FILA_SUCESSO 0
 #define FILA_ENDERECO_INVALIDO -1
-#define FILA_FILA_CHEIA -2
-#define FILA_FILA_VAZIA -3
+#define FILA_CHEIA -2
+#define FILA_VAZIA -3
 #define FILA_POSICAO_INEXISTENTE -4
 
-typedef struct Tipo_Nodo Nodo;
-struct Tipo_Nodo
+typedef struct Fila_Nodo Nodo;
+struct Fila_Nodo
 {
     Elemento elemento;
     Nodo *prox;
@@ -46,15 +46,12 @@ int FILA_VerificarFilaCheia(Fila *fila)
 {
     if(fila == NULL) return FILA_ENDERECO_INVALIDO;
     int fila_cheia;
-    Nodo *nodo = malloc(sizeof(Nodo));
-    if(nodo == NULL)
-    {
-        fila_cheia = 1;
-    }
+    Nodo *nodo = malloc(sizeof(nodo));
+    if(nodo == NULL) fila_cheia = 1;
     else
     {
-        free(nodo);
         fila_cheia = 0;
+        free(nodo);
     }
     return fila_cheia;
 }
@@ -65,29 +62,23 @@ int FILA_VerificarFilaVazia(Fila *fila)
     return fila->inicio == NULL;
 }
 
-int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
+int FILA_InserirElemento(Fila *fila, Elemento elemento)
 {
-    if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
-    if(FILA_VerificarFilaCheia(fila)) return FILA_FILA_CHEIA;
-    Nodo *nodo = malloc(sizeof(Nodo));
-    nodo->elemento = *elemento;
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    Nodo *nodo = malloc(sizeof(nodo));
+    if(nodo == NULL) return FILA_CHEIA;
+    nodo->elemento = elemento;
     nodo->prox = NULL;
-    if(fila->inicio == NULL)
-    {
-        fila->inicio = nodo;
-    }
-    if(fila->fim != NULL)
-    {
-        fila->fim->prox = nodo;
-    }
+    if(fila->inicio == NULL) fila->inicio = nodo;
+    if(fila->fim != NULL) fila->fim->prox = nodo;
     fila->fim = nodo;
     return FILA_SUCESSO;
 }
 
 int FILA_RemoverElemento(Fila *fila, Elemento *elemento)
 {
-    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
-    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
+    if(fila->inicio == NULL) return FILA_VAZIA;
     Nodo *nodo = fila->inicio;
     fila->inicio = fila->inicio->prox;
     *elemento = nodo->elemento;
@@ -99,7 +90,7 @@ int FILA_RemoverElemento(Fila *fila, Elemento *elemento)
 int FILA_ObterElemento(Fila *fila, Elemento *elemento)
 {
     if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
-    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    if(fila->inicio == NULL) return FILA_VAZIA;
     *elemento = fila->inicio->elemento;
     return FILA_SUCESSO;
 }

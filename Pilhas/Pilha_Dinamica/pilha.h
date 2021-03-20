@@ -4,13 +4,13 @@
 /*  Constantes */
 #define PILHA_SUCESSO 0
 #define PILHA_ENDERECO_INVALIDO -1
-#define PILHA_PILHA_CHEIA -2
-#define PILHA_PILHA_VAZIA -3
+#define PILHA_CHEIA -2
+#define PILHA_VAZIA -3
 #define PILHA_POSICAO_INEXISTENTE -4
 
 /*  Estruturas */
-typedef struct Tipo_Nodo Nodo;
-struct Tipo_Nodo
+typedef struct Pilha_Nodo Nodo;
+struct Pilha_Nodo
 {
     Elemento elemento;
     Nodo *prox;
@@ -47,16 +47,13 @@ int PILHA_VerificarPilhaCheia(Pilha *pilha)
 {
     if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     int pilha_cheia;
-    Nodo *nodo = malloc(sizeof(Nodo));
-    if(nodo == NULL)
-    {
-        pilha_cheia = 1;
-    }
+    Nodo *nodo = malloc(sizeof(nodo));
+    if(nodo == NULL) pilha_cheia = 1;
     else
     {
         pilha_cheia = 0;
+        free(nodo);
     }
-    free(nodo);
     return pilha_cheia;
 }
 
@@ -66,12 +63,12 @@ int PILHA_VerificarPilhaVazia(Pilha *pilha)
     return pilha->inicio == NULL;
 }
 
-int PILHA_EmpilharElemento(Pilha *pilha, Elemento *elemento)
+int PILHA_EmpilharElemento(Pilha *pilha, Elemento elemento)
 {
-    if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
-    if(PILHA_VerificarPilhaCheia(pilha)) return PILHA_PILHA_CHEIA;
-    Nodo *nodo = malloc(sizeof(Nodo));
-    nodo->elemento = *elemento;
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
+    Nodo *nodo = malloc(sizeof(nodo));
+    if(nodo == NULL) return PILHA_CHEIA;
+    nodo->elemento = elemento;
     nodo->prox = pilha->inicio;
     pilha->inicio = nodo;
     return PILHA_SUCESSO;
@@ -79,8 +76,8 @@ int PILHA_EmpilharElemento(Pilha *pilha, Elemento *elemento)
 
 int PILHA_DesempilharElemento(Pilha *pilha, Elemento *elemento)
 {
-    if(pilha == NULL) return PILHA_POSICAO_INEXISTENTE;
-    if(PILHA_VerificarPilhaVazia(pilha)) return PILHA_PILHA_VAZIA;
+    if(pilha == NULL || elemento == NULL) return PILHA_POSICAO_INEXISTENTE;
+    if(pilha->inicio == NULL) return PILHA_VAZIA;
     Nodo *nodo = pilha->inicio;
     pilha->inicio = pilha->inicio->prox;
     *elemento = nodo->elemento;
@@ -91,7 +88,7 @@ int PILHA_DesempilharElemento(Pilha *pilha, Elemento *elemento)
 int PILHA_ObterElemento(Pilha *pilha, Elemento *elemento)
 {
     if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
-    if(PILHA_VerificarPilhaVazia(pilha)) return PILHA_PILHA_VAZIA;
+    if(pilha->inicio == NULL) return PILHA_VAZIA;
     *elemento = pilha->inicio->elemento;
     return PILHA_SUCESSO;
 }

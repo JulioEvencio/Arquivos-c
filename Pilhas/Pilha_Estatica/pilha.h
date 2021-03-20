@@ -8,6 +8,7 @@
 #define PILHA_VAZIA -3
 #define PILHA_POSICAO_INEXISTENTE -4
 #define PILHA_TAMANHO_INVALIDO -5
+#define PILHA_SEM_MEMORIA -6
 
 /*  Estruturas */
 struct Tipo_Pilha
@@ -26,7 +27,7 @@ int PILHA_InicializarPilha(Pilha *pilha, int tamanho)
     pilha->tamanho = 0;
     pilha->tamanho_max = tamanho;
     pilha->elemento = malloc(sizeof(pilha->elemento) * pilha->tamanho_max);
-    if(pilha->elemento == NULL) return PILHA_CHEIA;
+    if(pilha->elemento == NULL) return PILHA_SEM_MEMORIA;
     return PILHA_SUCESSO;
 }
 
@@ -39,7 +40,7 @@ int PILHA_LiberarPilha(Pilha *pilha)
 
 int PILHA_VerificarPilhaTamanho(Pilha *pilha)
 {
-    if(pilha == NULL) return PILHA_TAMANHO_INVALIDO;
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     return pilha->tamanho;
 }
 
@@ -55,11 +56,11 @@ int PILHA_VerificarPilhaVazia(Pilha *pilha)
     return pilha->tamanho == 0;
 }
 
-int PILHA_EmpilharElemento(Pilha *pilha, Elemento *elemento)
+int PILHA_EmpilharElemento(Pilha *pilha, Elemento elemento)
 {
-    if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
+    if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     if(PILHA_VerificarPilhaCheia(pilha)) return PILHA_CHEIA;
-    pilha->elemento[pilha->tamanho] = *elemento;
+    pilha->elemento[pilha->tamanho] = elemento;
     pilha->tamanho++;
     return PILHA_SUCESSO;
 }

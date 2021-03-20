@@ -4,10 +4,11 @@
 /*  Constantes */
 #define FILA_SUCESSO 0
 #define FILA_ENDERECO_INVALIDO -1
-#define FILA_FILA_CHEIA -2
-#define FILA_FILA_VAZIA -3
+#define FILA_CHEIA -2
+#define FILA_VAZIA -3
 #define FILA_POSICAO_INEXISTENTE -4
 #define FILA_TAMANHO_INVALIDO -5
+#define FILA_SEM_MEMORIA -6
 
 /*  Estruturas */
 struct Tipo_Fila
@@ -25,19 +26,19 @@ int FILA_InicializarFila(Fila *fila, int tamanho)
 {
     if(fila == NULL) return FILA_ENDERECO_INVALIDO;
     if(tamanho < 1) return FILA_TAMANHO_INVALIDO;
-    fila->elemento = malloc(sizeof(fila->elemento));
-    if(fila->elemento == NULL) return FILA_FILA_CHEIA;
     fila->tamanho = 0;
     fila->tamanho_max = tamanho;
     fila->inicio = 0;
     fila->fim = 0;
+    fila->elemento = malloc(sizeof(fila->elemento) * fila->tamanho_max);
+    if(fila->elemento == NULL) return FILA_SEM_MEMORIA;
     return FILA_SUCESSO;
 }
 
 int FILA_LiberarFila(Fila *fila)
 {
-    if(fila == NULL || fila->elemento == NULL) return FILA_ENDERECO_INVALIDO;
-    free(fila->elemento);
+    if(fila == NULL) return FILA_ENDERECO_INVALIDO;
+    if(fila->elemento != NULL) free(fila->elemento);
     return FILA_SUCESSO;
 }
 
@@ -59,11 +60,11 @@ int FILA_VerificarFilaVazia(Fila *fila)
     return fila->tamanho == 0;
 }
 
-int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
+int FILA_InserirElemento(Fila *fila, Elemento elemento)
 {
     if(fila == NULL) return FILA_ENDERECO_INVALIDO;
-    if(FILA_VerificarFilaCheia(fila)) return FILA_FILA_CHEIA;
-    fila->elemento[fila->fim] = *elemento;
+    if(FILA_VerificarFilaCheia(fila)) return FILA_CHEIA;
+    fila->elemento[fila->fim] = elemento;
     fila->fim = (fila->fim + 1) % fila->tamanho_max;
     fila->tamanho++;
     return FILA_SUCESSO;
@@ -72,17 +73,17 @@ int FILA_IncluirElemento(Fila *fila, Elemento *elemento)
 int FILA_RemoverElemento(Fila *fila, Elemento *elemento)
 {
     if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
-    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_VAZIA;
     *elemento = fila->elemento[fila->inicio];
     fila->inicio = (fila->inicio + 1) % fila->tamanho_max;
-    fila->tamanho++;
+    fila->tamanho--;
     return FILA_SUCESSO;
 }
 
 int FILA_ObterElementoInicio(Fila *fila, Elemento *elemento)
 {
     if(fila == NULL || elemento == NULL) return FILA_ENDERECO_INVALIDO;
-    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_VAZIA;
     *elemento = fila->elemento[fila->inicio];
     return FILA_SUCESSO;
 }
@@ -90,7 +91,7 @@ int FILA_ObterElementoInicio(Fila *fila, Elemento *elemento)
 int FILA_FormatarFila(Fila *fila)
 {
     if(fila == NULL) return FILA_ENDERECO_INVALIDO;
-    if(FILA_VerificarFilaVazia(fila)) return FILA_FILA_VAZIA;
+    if(FILA_VerificarFilaVazia(fila)) return FILA_VAZIA;
     fila->tamanho = 0;
     fila->inicio = 0;
     fila->fim = 0;
