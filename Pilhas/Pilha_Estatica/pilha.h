@@ -64,4 +64,12 @@ int PILHA_EmpilharElemento(Pilha *pilha, Elemento *elemento)
     return PILHA_SUCESSO;
 }
 
+int PILHA_DesempilharElemento(Pilha *pilha, Elemento *elemento)
+{
+    if(pilha == NULL || elemento == NULL) return PILHA_ENDERECO_INVALIDO;
+    pilha->tamanho--;
+    *elemento = pilha->elemento[pilha->tamanho];
+    return PILHA_SUCESSO;
+}
+
 #endif
