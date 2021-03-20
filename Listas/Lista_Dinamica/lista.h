@@ -184,10 +184,18 @@ int LISTA_ExcluirElementoFinal(Lista *lista)
     return LISTA_SUCESSO;
 }
 
-int LISTA_AlterarElemento(Lista *lista, Elemento *elemento, int posicao)
+int LISTA_AlterarElementoInicio(Lista *lista, Elemento *elemento)
 {
     if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
-    if(LISTA_VerificarListaVazia(lista)) return LISTA_LISTA_VAZIA;
+    if(lista->inicio == NULL) return LISTA_VAZIA;
+    lista->inicio->elemento = *elemento;
+    return LISTA_SUCESSO;
+}
+
+int LISTA_AlterarElementoPosicao(Lista *lista, Elemento *elemento, int posicao)
+{
+    if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(lista->inicio == NULL) return LISTA_VAZIA;
     if(posicao < 1 || posicao > LISTA_VerificarListaTamanho(lista)) return LISTA_POSICAO_INEXISTENTE;
     Nodo *nodo = lista->inicio;
     for(int i = 1; i < posicao; i++)
@@ -198,13 +206,47 @@ int LISTA_AlterarElemento(Lista *lista, Elemento *elemento, int posicao)
     return LISTA_SUCESSO;
 }
 
-int LISTA_ObterElemento(Lista *lista, Elemento *elemento, int posicao)
+int LISTA_AlterarElementoFinal(Lista *lista, Elemento *elemento)
 {
     if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
-    if(LISTA_VerificarListaVazia(lista)) return LISTA_LISTA_VAZIA;
+    if(lista->inicio == NULL) return LISTA_VAZIA;
+    Nodo *nodo = lista->inicio;
+    while(nodo->prox != NULL)
+    {
+        nodo = nodo->prox;
+    }
+    nodo->elemento = *elemento;
+    return LISTA_SUCESSO;
+}
+
+int LISTA_ObterElementoInicio(Lista *lista, Elemento *elemento)
+{
+    if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(lista->inicio == NULL) return LISTA_VAZIA;
+    *elemento = lista->inicio->elemento;
+    return LISTA_SUCESSO;
+}
+
+int LISTA_ObterElementoPosicao(Lista *lista, Elemento *elemento, int posicao)
+{
+    if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(lista->inicio == NULL) return LISTA_VAZIA;
     if(posicao < 1 || posicao > LISTA_VerificarListaTamanho(lista)) return LISTA_POSICAO_INEXISTENTE;
     Nodo *nodo = lista->inicio;
     for(int i = 1; i < posicao; i++)
+    {
+        nodo = nodo->prox;
+    }
+    *elemento = nodo->elemento;
+    return LISTA_SUCESSO;
+}
+
+int LISTA_ObterElementoFinal(Lista *lista, Elemento *elemento)
+{
+    if(lista == NULL || elemento == NULL) return LISTA_ENDERECO_INVALIDO;
+    if(lista->inicio == NULL) return LISTA_VAZIA;
+    Nodo *nodo = lista->inicio;
+    while(nodo->prox != NULL)
     {
         nodo = nodo->prox;
     }
