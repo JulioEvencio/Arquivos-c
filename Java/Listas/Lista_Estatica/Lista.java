@@ -17,59 +17,59 @@ public class Lista {
 	}
 	
 	public int getTamanho() {
-        return this.tamanho;
-    }
+        	return this.tamanho;
+    	}
 	
 	public int getElemento(int posicao) {
-        return this.elemento[posicao - 1];
-    }
+        	return this.elemento[posicao - 1];
+    	}
 	
 	public void inserirNoIncio(int elemento) {
-        for(int i = this.tamanho; i > 0; i--) {
-            this.elemento[i] = this.elemento[i - 1];
-        }
-        this.elemento[0] = elemento;
-        this.tamanho++;
-    }
+        	for(int i = this.tamanho; i > 0; i--) {
+            	this.elemento[i] = this.elemento[i - 1];
+        	}
+        	this.elemento[0] = elemento;
+        	this.tamanho++;
+    	}
 	
 	public void inserirNaPosicao(int posicao, int elemento) {
-        for(int i = this.tamanho; i > (posicao - 1); i--) {
-            this.elemento[i] = this.elemento[i - 1];
-        }
-        this.elemento[posicao - 1] = elemento;
-        this.tamanho++;
-    }
+        	for(int i = this.tamanho; i > (posicao - 1); i--) {
+            	this.elemento[i] = this.elemento[i - 1];
+        	}
+        	this.elemento[posicao - 1] = elemento;
+        	this.tamanho++;
+    	}
 	
 	public void inserirNoFinal(int elemento) {
-        this.elemento[this.tamanho] = elemento;
-        this.tamanho++;
-    }
+        	this.elemento[this.tamanho] = elemento;
+        	this.tamanho++;
+    	}
 	
 	public int removerNoInicio() {
-        int numero = this.elemento[0];
-        for(int i = 0; i < this.tamanho; i++) {
-            this.elemento[i] = this.elemento[i + 1];
-        }
-        this.tamanho--;
-        return numero;
-    }
+        	int numero = this.elemento[0];
+        	for(int i = 0; i < this.tamanho; i++) {
+            	this.elemento[i] = this.elemento[i + 1];
+        	}
+        	this.tamanho--;
+        	return numero;
+    	}
 	
 	public int removerNaPosicao(int posicao) {
-        int numero = this.elemento[posicao - 1];
-        for(int i = (posicao - 1); i < this.tamanho; i++) {
-            this.elemento[i] = this.elemento[i + 1];
-        }
-        this.tamanho--;
-        return numero;
-    }
+        	int numero = this.elemento[posicao - 1];
+        	for(int i = (posicao - 1); i < this.tamanho; i++) {
+            	this.elemento[i] = this.elemento[i + 1];
+        	}
+        	this.tamanho--;
+        	return numero;
+    	}
 	
 	public int removerNoFinal() {
-        this.tamanho--;
-        return this.elemento[this.tamanho];
-    }
+        	this.tamanho--;
+        	return this.elemento[this.tamanho];
+    	}
 	
 	public void formatar() {
-        this.tamanho = 0;
-    }
+        	this.tamanho = 0;
+	}
 	
 }
