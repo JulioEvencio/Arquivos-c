@@ -1,5 +1,11 @@
-class Lista {
+public class Lista {
 	
-	//	Code
+	private final int[] elemento;
+	private int tamanho;
+	
+	public Lista(int tamanho) {
+		this.elemento = new int[tamanho];
+		this.tamanho = 0;
+	}
 	
 }
