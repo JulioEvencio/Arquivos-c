@@ -32,4 +32,12 @@ public class Lista {
         this.tamanho++;
     }
 	
+	public void inserirNaPosicao(int posicao, int elemento) {
+        for(int i = this.tamanho; i > (posicao - 1); i--) {
+            this.elemento[i] = this.elemento[i - 1];
+        }
+        this.elemento[posicao - 1] = elemento;
+        this.tamanho++;
+    }
+	
 }
