@@ -63,4 +63,9 @@ public class Lista {
         return numero;
     }
 	
+	public int removerNoFinal() {
+        this.tamanho--;
+        return this.elemento[this.tamanho];
+    }
+	
 }
