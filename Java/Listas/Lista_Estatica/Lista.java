@@ -12,4 +12,8 @@ public class Lista {
 		return this.tamanho == 0;
 	}
 	
+	public boolean isCheia() {
+		return this.tamanho == this.elemento.length;
+	}
+	
 }
