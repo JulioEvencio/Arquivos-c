@@ -40,4 +40,9 @@ public class Lista {
         this.tamanho++;
     }
 	
+	public void inserirNoFinal(int elemento) {
+        this.elemento[this.tamanho] = elemento;
+        this.tamanho++;
+    }
+	
 }
