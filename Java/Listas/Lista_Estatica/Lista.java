@@ -24,4 +24,12 @@ public class Lista {
         return this.elemento[posicao - 1];
     }
 	
+	public void inserirNoIncio(int elemento) {
+        for(int i = this.tamanho; i > 0; i--) {
+            this.elemento[i] = this.elemento[i - 1];
+        }
+        this.elemento[0] = elemento;
+        this.tamanho++;
+    }
+	
 }
