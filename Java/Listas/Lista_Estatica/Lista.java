@@ -20,4 +20,8 @@ public class Lista {
         return this.tamanho;
     }
 	
+	public int getElemento(int posicao) {
+        return this.elemento[posicao - 1];
+    }
+	
 }
