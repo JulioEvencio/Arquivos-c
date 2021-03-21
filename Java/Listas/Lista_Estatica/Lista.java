@@ -54,4 +54,13 @@ public class Lista {
         return numero;
     }
 	
+	public int removerNaPosicao(int posicao) {
+        int numero = this.elemento[posicao - 1];
+        for(int i = (posicao - 1); i < this.tamanho; i++) {
+            this.elemento[i] = this.elemento[i + 1];
+        }
+        this.tamanho--;
+        return numero;
+    }
+	
 }
