@@ -16,4 +16,8 @@ public class Lista {
 		return this.tamanho == this.elemento.length;
 	}
 	
+	public int getTamanho() {
+        return this.tamanho;
+    }
+	
 }
