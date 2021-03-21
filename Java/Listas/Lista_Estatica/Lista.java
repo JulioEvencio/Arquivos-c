@@ -45,4 +45,13 @@ public class Lista {
         this.tamanho++;
     }
 	
+	public int removerNoInicio() {
+        int numero = this.elemento[0];
+        for(int i = 0; i < this.tamanho; i++) {
+            this.elemento[i] = this.elemento[i + 1];
+        }
+        this.tamanho--;
+        return numero;
+    }
+	
 }
