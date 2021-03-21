@@ -8,4 +8,8 @@ public class Lista {
 		this.tamanho = 0;
 	}
 	
+	public boolean isVazia() {
+		return this.tamanho == 0;
+	}
+	
 }
