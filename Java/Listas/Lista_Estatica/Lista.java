@@ -68,4 +68,8 @@ public class Lista {
         return this.elemento[this.tamanho];
     }
 	
+	public void formatar() {
+        this.tamanho = 0;
+    }
+	
 }
