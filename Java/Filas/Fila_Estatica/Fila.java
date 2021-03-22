@@ -22,4 +22,8 @@ public class Fila {
     public int getTamanho() {
         return this.tamanho;
     }
+
+    public int getElemento() {
+        return this.elemento[this.inicio];
+    }
 }
