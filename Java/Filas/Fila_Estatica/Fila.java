@@ -26,4 +26,10 @@ public class Fila {
     public int getElemento() {
         return this.elemento[this.inicio];
     }
+
+    public void inserir(int elemento) {
+        this.elemento[this.fim] = elemento;
+        this.fim = (this.fim + 1) % this.elemento.length;
+        this.tamanho++;
+    }
 }
