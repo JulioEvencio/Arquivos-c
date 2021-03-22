@@ -32,4 +32,11 @@ public class Fila {
         this.fim = (this.fim + 1) % this.elemento.length;
         this.tamanho++;
     }
+
+    public int remover() {
+        int numero = this.elemento[this.inicio];
+        this.inicio = (this.inicio + 1) % this.elemento.length;
+        this.tamanho--;
+        return numero;
+    }
 }
