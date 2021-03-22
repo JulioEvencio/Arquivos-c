@@ -10,4 +10,8 @@ public class Fila {
         this.fim = 0;
         this.tamanho = 0;
     }
+
+    public boolean isVazia() {
+        return this.tamanho == 0;
+    }
 }
