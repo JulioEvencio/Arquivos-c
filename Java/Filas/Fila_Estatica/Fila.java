@@ -39,4 +39,10 @@ public class Fila {
         this.tamanho--;
         return numero;
     }
+
+    public void formatar() {
+        this.inicio = 0;
+        this.fim = 0;
+        this.tamanho = 0;
+    }
 }
