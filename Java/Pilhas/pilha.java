@@ -14,4 +14,8 @@ public class Pilha {
     public boolean isCheia() {
         return this.tamanho == this.elemento.length;
     }
+
+    public int getTamanho() {
+        return this.tamanho;
+    }
 }
