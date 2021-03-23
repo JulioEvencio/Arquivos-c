@@ -6,4 +6,8 @@ public class Pilha {
         this.elemento = new int[tamanho];
         this.tamanho = 0;
     }
+
+    public boolean isVazia() {
+        return this.tamanho == 0;
+    }
 }
