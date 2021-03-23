@@ -27,4 +27,9 @@ public class Pilha {
         this.elemento[this.tamanho] = elemento;
         this.tamanho++;
     }
+
+    public int desempilhar() {
+        this.tamanho--;
+        return this.elemento[this.tamanho];
+    }
 }
