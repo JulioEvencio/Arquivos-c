@@ -22,4 +22,9 @@ public class Pilha {
     public int getElemento() {
         return this.elemento[this.tamanho - 1];
     }
+
+    public void empilhar(int elemento) {
+        this.elemento[this.tamanho] = elemento;
+        this.tamanho++;
+    }
 }
