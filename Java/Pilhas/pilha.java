@@ -18,4 +18,8 @@ public class Pilha {
     public int getTamanho() {
         return this.tamanho;
     }
+
+    public int getElemento() {
+        return this.elemento[this.tamanho - 1];
+    }
 }
