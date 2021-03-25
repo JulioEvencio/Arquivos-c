@@ -1,11 +1,4 @@
-
-/*  Constantes */
-#define PILHA_SUCESSO 0
-#define PILHA_ENDERECO_INVALIDO -1
-#define PILHA_CHEIA -2
-#define PILHA_VAZIA -3
-#define PILHA_TAMANHO_INVALIDO -4
-#define PILHA_SEM_MEMORIA -5
+#include "pilha.h"
 
 /*  Estruturas */
 struct Tipo_Pilha
@@ -14,17 +7,18 @@ struct Tipo_Pilha
     int tamanho_max;
     Elemento *elemento;
 };
-typedef struct Tipo_Pilha Pilha;
 
 /*  Funcoes*/
-int PILHA_InicializarPilha(Pilha *pilha, int tamanho)
+int PILHA_InicializarPilha(Pilha **pilha, int tamanho)
 {
     if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     if(tamanho < 1) return PILHA_TAMANHO_INVALIDO;
-    pilha->tamanho = 0;
-    pilha->tamanho_max = tamanho;
-    pilha->elemento = malloc(sizeof(pilha->elemento) * pilha->tamanho_max);
-    if(pilha->elemento == NULL) return PILHA_SEM_MEMORIA;
+    *pilha = malloc(sizeof(*pilha));
+    if(pilha == NULL) return PILHA_SEM_MEMORIA;
+    (*pilha)->tamanho = 0;
+    (*pilha)->tamanho_max = tamanho;
+    (*pilha)->elemento = malloc(sizeof((*pilha)->elemento) * (*pilha)->tamanho_max);
+    if((*pilha)->elemento == NULL) return PILHA_SEM_MEMORIA;
     return PILHA_SUCESSO;
 }
 
@@ -32,6 +26,7 @@ int PILHA_LiberarPilha(Pilha *pilha)
 {
     if(pilha == NULL) return PILHA_ENDERECO_INVALIDO;
     if(pilha->elemento != NULL) free(pilha->elemento);
+    free(pilha);
     return PILHA_SUCESSO;
 }
 
