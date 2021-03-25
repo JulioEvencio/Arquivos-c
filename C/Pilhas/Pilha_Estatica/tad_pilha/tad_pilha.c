@@ -1,4 +1,4 @@
-#include "pilha.h"
+#include "tad_pilha.h"
 
 /*  Estruturas */
 struct Tipo_Pilha
