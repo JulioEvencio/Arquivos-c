@@ -117,3 +117,29 @@ int lista_remover_elemento_final(Lista **lista) {
 
     return LISTA_SUCESSO;
 }
+
+int lista_alterar_elemento_inicio(Lista **lista, Elemento *elemento) {
+    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+
+    (*lista)->elemento[0] = *elemento;
+
+    return LISTA_SUCESSO;
+}
+
+int lista_alterar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
+    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+
+    if (posicao < LISTA_INICIO || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
+
+    (*lista)->elemento[posicao - 1] = *elemento;
+
+    return LISTA_SUCESSO;
+}
+
+int lista_alterar_elemento_final(Lista **lista, Elemento *elemento) {
+    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+
+    (*lista)->elemento[(*lista)->tamanho - 1] = *elemento;
+
+    return LISTA_SUCESSO;
+}
