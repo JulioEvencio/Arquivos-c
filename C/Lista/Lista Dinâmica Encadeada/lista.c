@@ -23,7 +23,7 @@ void lista_liberar(Lista **lista) {
     }
 }
 
-int lista_obter_tamanho(Lista **lista) {
+int lista_tamanho(Lista **lista) {
     int tamanho = 0;
     Nodo *nodo = *lista;
 
@@ -35,11 +35,11 @@ int lista_obter_tamanho(Lista **lista) {
     return tamanho;
 }
 
-int lista_esta_vazia(Lista **lista) {
+int lista_vazia(Lista **lista) {
     return *lista == NULL;
 }
 
-int lista_adicionar_elemento_inicio(Lista **lista, Elemento *elemento) {
+int lista_adicionar_inicio(Lista **lista, Elemento *elemento) {
     Nodo *nodo = malloc(sizeof *nodo);
 
     if (nodo == NULL) return LISTA_SEM_MEMORIA;
@@ -51,10 +51,10 @@ int lista_adicionar_elemento_inicio(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
+int lista_adicionar_posicao(Lista **lista, Elemento *elemento, int posicao) {
     Nodo *nodo = NULL;
 
-    if (posicao < LISTA_INICIO || posicao > lista_obter_tamanho(lista)) {
+    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
@@ -82,7 +82,7 @@ int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posi
     return LISTA_SUCESSO;
 }
 
-int lista_adicionar_elemento_final(Lista **lista, Elemento *elemento) {
+int lista_adicionar_final(Lista **lista, Elemento *elemento) {
     Nodo *nodo = malloc(sizeof *nodo);
 
     if (nodo == NULL) return LISTA_SEM_MEMORIA;
@@ -106,7 +106,7 @@ int lista_adicionar_elemento_final(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_elemento_inicio(Lista **lista) {
+int lista_remover_inicio(Lista **lista) {
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
@@ -117,12 +117,12 @@ int lista_remover_elemento_inicio(Lista **lista) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_elemento_posicao(Lista **lista, int posicao) {
+int lista_remover_posicao(Lista **lista, int posicao) {
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    if (posicao < LISTA_INICIO || posicao > lista_obter_tamanho(lista)) {
+    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
@@ -144,7 +144,7 @@ int lista_remover_elemento_posicao(Lista **lista, int posicao) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_elemento_final(Lista **lista) {
+int lista_remover_final(Lista **lista) {
     Nodo *nodo = *lista;
 
     if (nodo == NULL) LISTA_VAZIA;
@@ -167,7 +167,7 @@ int lista_remover_elemento_final(Lista **lista) {
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_elemento_inicio(Lista **lista, Elemento *elemento) {
+int lista_alterar_inicio(Lista **lista, Elemento *elemento) {
     if (*lista == NULL) return LISTA_VAZIA;
 
     (*lista)->elemento = *elemento;
@@ -175,12 +175,12 @@ int lista_alterar_elemento_inicio(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
+int lista_alterar_posicao(Lista **lista, Elemento *elemento, int posicao) {
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    if (posicao < LISTA_INICIO || posicao > lista_obter_tamanho(lista)) {
+    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
@@ -193,7 +193,7 @@ int lista_alterar_elemento_posicao(Lista **lista, Elemento *elemento, int posica
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_elemento_final(Lista **lista, Elemento *elemento) {
+int lista_alterar_final(Lista **lista, Elemento *elemento) {
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
@@ -207,7 +207,7 @@ int lista_alterar_elemento_final(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_obter_elemento_inicio(Lista **lista, Elemento *elemento) {
+int lista_obter_inicio(Lista **lista, Elemento *elemento) {
     if (*lista == NULL) return LISTA_VAZIA;
 
     *elemento = (*lista)->elemento;
@@ -215,12 +215,12 @@ int lista_obter_elemento_inicio(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_obter_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
+int lista_obter_posicao(Lista **lista, Elemento *elemento, int posicao) {
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    if (posicao < LISTA_INICIO || posicao > lista_obter_tamanho(lista)) {
+    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
@@ -233,7 +233,7 @@ int lista_obter_elemento_posicao(Lista **lista, Elemento *elemento, int posicao)
     return LISTA_SUCESSO;
 }
 
-int lista_obter_elemento_final(Lista **lista, Elemento *elemento) {
+int lista_obter_final(Lista **lista, Elemento *elemento) {
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;

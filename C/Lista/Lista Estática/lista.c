@@ -35,20 +35,20 @@ void lista_liberar(Lista **lista) {
     free(*lista);
 }
 
-int lista_obter_tamanho(Lista **lista) {
+int lista_tamanho(Lista **lista) {
     return (*lista)->tamanho;
 }
 
-int lista_esta_vazia(Lista **lista) {
+int lista_vazia(Lista **lista) {
     return (*lista)->tamanho == 0;
 }
 
-int lista_esta_cheia(Lista **lista) {
+int lista_cheia(Lista **lista) {
     return (*lista)->tamanho == (*lista)->tamanho_max;
 }
 
-int lista_adicionar_elemento_inicio(Lista **lista, Elemento *elemento) {
-    if (lista_esta_cheia(lista)) return LISTA_CHEIA;
+int lista_adicionar_inicio(Lista **lista, Elemento *elemento) {
+    if (lista_cheia(lista)) return LISTA_CHEIA;
 
     for (int i = (*lista)->tamanho; i >= LISTA_INICIO; i--) {
         (*lista)->elemento[i] = (*lista)->elemento[i - 1];
@@ -60,8 +60,8 @@ int lista_adicionar_elemento_inicio(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
-    if (lista_esta_cheia(lista)) return LISTA_CHEIA;
+int lista_adicionar_posicao(Lista **lista, Elemento *elemento, int posicao) {
+    if (lista_cheia(lista)) return LISTA_CHEIA;
 
     if (posicao < LISTA_INICIO || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
 
@@ -75,8 +75,8 @@ int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posi
     return LISTA_SUCESSO;
 }
 
-int lista_adicionar_elemento_final(Lista **lista, Elemento *elemento) {
-    if (lista_esta_cheia(lista)) return LISTA_CHEIA;
+int lista_adicionar_final(Lista **lista, Elemento *elemento) {
+    if (lista_cheia(lista)) return LISTA_CHEIA;
 
     (*lista)->elemento[(*lista)->tamanho] = *elemento;
     (*lista)->tamanho++;
@@ -84,8 +84,8 @@ int lista_adicionar_elemento_final(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_elemento_inicio(Lista **lista) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_remover_inicio(Lista **lista) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     for (int i = 0; i < (*lista)->tamanho; i++) {
         (*lista)->elemento[i] = (*lista)->elemento[i + 1];
@@ -96,8 +96,8 @@ int lista_remover_elemento_inicio(Lista **lista) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_elemento_posicao(Lista **lista, int posicao) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_remover_posicao(Lista **lista, int posicao) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     if (posicao < LISTA_INICIO || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
 
@@ -110,24 +110,24 @@ int lista_remover_elemento_posicao(Lista **lista, int posicao) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_elemento_final(Lista **lista) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_remover_final(Lista **lista) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     (*lista)->tamanho--;
 
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_elemento_inicio(Lista **lista, Elemento *elemento) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_alterar_inicio(Lista **lista, Elemento *elemento) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     (*lista)->elemento[0] = *elemento;
 
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_alterar_posicao(Lista **lista, Elemento *elemento, int posicao) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     if (posicao < LISTA_INICIO || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
 
@@ -136,26 +136,24 @@ int lista_alterar_elemento_posicao(Lista **lista, Elemento *elemento, int posica
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_elemento_final(Lista **lista, Elemento *elemento) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_alterar_final(Lista **lista, Elemento *elemento) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     (*lista)->elemento[(*lista)->tamanho - 1] = *elemento;
 
     return LISTA_SUCESSO;
 }
 
-////////
-
-int lista_obter_elemento_inicio(Lista **lista, Elemento *elemento) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_obter_inicio(Lista **lista, Elemento *elemento) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     *elemento = (*lista)->elemento[0];
 
     return LISTA_SUCESSO;
 }
 
-int lista_obter_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_obter_posicao(Lista **lista, Elemento *elemento, int posicao) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     if (posicao < LISTA_INICIO || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
 
@@ -164,8 +162,8 @@ int lista_obter_elemento_posicao(Lista **lista, Elemento *elemento, int posicao)
     return LISTA_SUCESSO;
 }
 
-int lista_obter_elemento_final(Lista **lista, Elemento *elemento) {
-    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+int lista_obter_final(Lista **lista, Elemento *elemento) {
+    if (lista_vazia(lista)) return LISTA_VAZIA;
 
     *elemento = (*lista)->elemento[(*lista)->tamanho - 1];
 
