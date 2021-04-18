@@ -1,0 +1,81 @@
+#include <stdlib.h>
+#include "fila.h"
+
+typedef struct Nodo Nodo;
+struct Nodo {
+    Elemento elemento;
+    Nodo *proximo;
+};
+
+void fila_inicializar(Fila **fila) {
+    *fila == NULL;
+}
+
+void fila_liberar(Fila **fila) {
+    Nodo *nodo = NULL;
+
+    while (*fila != NULL) {
+        nodo = *fila;
+        *fila = (*fila)->proximo;
+        free(nodo);
+    }
+}
+
+int fila_tamanho(Fila **fila) {
+    int tamanho = 0;
+    Nodo *nodo = *fila;
+
+    while (nodo != NULL) {
+        nodo = nodo->proximo;
+        tamanho++;
+    }
+
+    return tamanho;
+}
+
+int fila_vazia(Fila **fila) {
+    return *fila == NULL;
+}
+
+int fila_adicionar(Fila **fila, Elemento *elemento) {
+    Nodo *nodo = malloc(sizeof *nodo);
+
+    if (nodo == NULL) return FILA_SEM_MEMORIA;
+
+    nodo->elemento = *elemento;
+
+    if (*fila == NULL) {
+        nodo->proximo = *fila;
+        *fila = nodo;
+    } else {
+        Nodo *auxiliar = *fila;
+
+        while (auxiliar->proximo != NULL) {
+            auxiliar = auxiliar->proximo;
+        }
+
+        nodo->proximo = auxiliar->proximo;
+        auxiliar->proximo = nodo;
+    }
+
+    return FILA_SUCESSO;
+}
+
+int fila_remover(Fila **fila) {
+    Nodo *nodo = *fila;
+
+    if (nodo == NULL) return FILA_VAZIA;
+
+    *fila = (*fila)->proximo;
+    free(nodo);
+
+    return FILA_SUCESSO;
+}
+
+int fila_obter(Fila **fila, Elemento *elemento) {
+    if (*fila == NULL) return FILA_VAZIA;
+
+    *elemento = (*fila)->elemento;
+
+    return FILA_SUCESSO;
+}
