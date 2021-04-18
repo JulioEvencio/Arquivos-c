@@ -3,8 +3,7 @@
 
 #define LISTA_INICIO 1
 
-struct Lista
-{
+struct Lista {
     int tamanho;
     int tamanho_max;
     Elemento *elemento;
