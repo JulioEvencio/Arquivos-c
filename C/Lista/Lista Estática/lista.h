@@ -20,6 +20,7 @@ void lista_liberar(Lista **lista);
 
 int lista_obter_tamanho(Lista **lista);
 int lista_esta_vazia(Lista **lista);
+int lista_esta_cheia(Lista **lista);
 
 int lista_adicionar_elemento_inicio(Lista **lista, Elemento *elemento);
 int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao);

@@ -32,3 +32,15 @@ void lista_liberar(Lista **lista) {
     free((*lista)->elemento);
     free(*lista);
 }
+
+int lista_obter_tamanho(Lista **lista) {
+    return (*lista)->tamanho;
+}
+
+int lista_esta_vazia(Lista **lista) {
+    return (*lista)->tamanho == 0;
+}
+
+int lista_esta_cheia(Lista **lista) {
+    return (*lista)->tamanho == (*lista)->tamanho_max;
+}
