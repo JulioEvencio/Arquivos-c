@@ -48,13 +48,38 @@ int lista_esta_cheia(Lista **lista) {
 }
 
 int lista_adicionar_elemento_inicio(Lista **lista, Elemento *elemento) {
-    //
+    if (lista_esta_cheia(lista)) return LISTA_CHEIA;
+
+    for (int i = (*lista)->tamanho; i >= LISTA_INICIO; i--) {
+        (*lista)->elemento[i] = (*lista)->elemento[i - 1];
+    }
+
+    (*lista)->elemento[0] = *elemento;
+    (*lista)->tamanho++;
+
+    return LISTA_SUCESSO;
 }
 
 int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
-    //
+    if (lista_esta_cheia(lista)) return LISTA_CHEIA;
+
+    if (posicao < LISTA_INICIO || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
+
+    for (int i = (*lista)->tamanho; i > (posicao - 1); i--) {
+        (*lista)->elemento[i] = (*lista)->elemento[i - 1];
+    }
+
+    (*lista)->elemento[posicao - 1] = *elemento;
+    (*lista)->tamanho++;
+
+    return LISTA_SUCESSO;
 }
 
 int lista_adicionar_elemento_final(Lista **lista, Elemento *elemento) {
-    //
+    if (lista_esta_cheia(lista)) return LISTA_CHEIA;
+
+    (*lista)->elemento[(*lista)->tamanho] = *elemento;
+    (*lista)->tamanho++;
+
+    return LISTA_SUCESSO;
 }
