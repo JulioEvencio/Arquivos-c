@@ -143,3 +143,31 @@ int lista_alterar_elemento_final(Lista **lista, Elemento *elemento) {
 
     return LISTA_SUCESSO;
 }
+
+////////
+
+int lista_obter_elemento_inicio(Lista **lista, Elemento *elemento) {
+    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+
+    *elemento = (*lista)->elemento[0];
+
+    return LISTA_SUCESSO;
+}
+
+int lista_obter_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
+    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+
+    if (posicao < LISTA_INICIO || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
+
+    *elemento = (*lista)->elemento[posicao - 1];
+
+    return LISTA_SUCESSO;
+}
+
+int lista_obter_elemento_final(Lista **lista, Elemento *elemento) {
+    if (lista_esta_vazia(lista)) return LISTA_VAZIA;
+
+    *elemento = (*lista)->elemento[(*lista)->tamanho - 1];
+
+    return LISTA_SUCESSO;
+}
