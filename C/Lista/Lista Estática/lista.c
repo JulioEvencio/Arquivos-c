@@ -11,6 +11,8 @@ struct Lista
 };
 
 int lista_inicializar(Lista **lista, int tamanho) {
+    if (tamanho < LISTA_INICIO) return LISTA_TAMANHO_INVALIDO;
+    
     *lista = malloc(sizeof **lista);
 
     if (*lista == NULL) return LISTA_SEM_MEMORIA;
@@ -43,4 +45,16 @@ int lista_esta_vazia(Lista **lista) {
 
 int lista_esta_cheia(Lista **lista) {
     return (*lista)->tamanho == (*lista)->tamanho_max;
+}
+
+int lista_adicionar_elemento_inicio(Lista **lista, Elemento *elemento) {
+    //
+}
+
+int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posicao) {
+    //
+}
+
+int lista_adicionar_elemento_final(Lista **lista, Elemento *elemento) {
+    //
 }
