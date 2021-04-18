@@ -13,6 +13,16 @@ void lista_inicializar(Lista **lista) {
     *lista = NULL;
 }
 
+void lista_liberar(Lista **lista) {
+    Nodo *nodo = NULL;
+
+    while (*lista != NULL) {
+        nodo = *lista;
+        *lista = (*lista)->proximo;
+        free(nodo);
+    }
+}
+
 int lista_obter_tamanho(Lista **lista) {
     int tamanho = 0;
     Nodo *nodo = *lista;
@@ -235,14 +245,4 @@ int lista_obter_elemento_final(Lista **lista, Elemento *elemento) {
     *elemento = nodo->elemento;
 
     return LISTA_SUCESSO;
-}
-
-void lista_formatar(Lista **lista) {
-    Nodo *nodo = NULL;
-
-    while (*lista != NULL) {
-        nodo = *lista;
-        *lista = (*lista)->proximo;
-        free(nodo);
-    }
 }

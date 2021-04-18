@@ -4,16 +4,18 @@
 #define LISTA_SUCESSO 0
 #define LISTA_SEM_MEMORIA -1
 #define LISTA_VAZIA -2
-#define LISTA_POSICAO_INEXISTENTE -3
+#define LISTA_CHEIA -3
+#define LISTA_POSICAO_INEXISTENTE -4
+#define LISTA_TAMANHO_INVALIDO -5
 
 struct Elemento {
     int x;
 };
 typedef struct Elemento Elemento;
 
-typedef struct Nodo Lista;
+typedef struct Lista Lista;
 
-void lista_inicializar(Lista **lista);
+int lista_inicializar(Lista **lista, int tamanho);
 void lista_liberar(Lista **lista);
 
 int lista_obter_tamanho(Lista **lista);
