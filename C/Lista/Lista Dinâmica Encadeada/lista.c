@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "lista.h"
 
-#define LISTA_INICIO 0
+#define LISTA_INICIO 1
 
 typedef struct Nodo Nodo;
 struct Nodo {
@@ -60,7 +60,7 @@ int lista_adicionar_elemento_posicao(Lista **lista, Elemento *elemento, int posi
     } else {
         Nodo *nodo_anterior = NULL, *nodo_atual = *lista;
 
-        for (int i = LISTA_INICIO; i < posicao; i++) {
+        for (int i = LISTA_INICIO; i <= posicao; i++) {
             nodo_anterior = nodo_atual;
             nodo_atual = nodo_atual->proximo;
         }
@@ -122,7 +122,7 @@ int lista_remover_elemento_posicao(Lista **lista, int posicao) {
     } else {
         Nodo *auxiliar = NULL;
 
-        for (int i = LISTA_INICIO; i < posicao; i++) {
+        for (int i = LISTA_INICIO; i <= posicao; i++) {
             auxiliar = nodo;
             nodo = nodo->proximo;
         }
@@ -174,7 +174,7 @@ int lista_alterar_elemento_posicao(Lista **lista, Elemento *elemento, int posica
         return LISTA_POSICAO_INEXISTENTE;
     }
 
-    for (int i = LISTA_INICIO; i < posicao; i++) {
+    for (int i = LISTA_INICIO; i <= posicao; i++) {
         nodo = nodo->proximo;
     }
 
@@ -214,7 +214,7 @@ int lista_obter_elemento_posicao(Lista **lista, Elemento *elemento, int posicao)
         return LISTA_POSICAO_INEXISTENTE;
     }
 
-    for (int i = LISTA_INICIO; i < posicao; i++) {
+    for (int i = LISTA_INICIO; i <= posicao; i++) {
         nodo = nodo->proximo;
     }
 
