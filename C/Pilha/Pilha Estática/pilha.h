@@ -5,8 +5,7 @@
 #define PILHA_SEM_MEMORIA -1
 #define PILHA_VAZIA -2
 #define PILHA_CHEIA -3
-#define PILHA_POSICAO_INEXISTENTE -4
-#define PILHA_TAMANHO_INVALIDO -5
+#define PILHA_TAMANHO_INVALIDO -4
 
 struct Elemento {
     int x;

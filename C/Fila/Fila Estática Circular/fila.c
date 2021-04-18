@@ -69,6 +69,14 @@ int fila_remover(Fila **fila) {
     return FILA_SUCESSO;
 }
 
+int fila_alterar(Fila **fila, Elemento *elemento) {
+    if (fila_vazia(fila)) return FILA_VAZIA;
+
+    (*fila)->elemento[(*fila)->inicio] = *elemento;
+
+    return FILA_SUCESSO;
+}
+
 int fila_obter(Fila **fila, Elemento *elemento) {
     if (fila_vazia(fila)) return FILA_VAZIA;
 

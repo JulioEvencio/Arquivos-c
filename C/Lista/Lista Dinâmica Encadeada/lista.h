@@ -11,7 +11,7 @@ struct Elemento {
 };
 typedef struct Elemento Elemento;
 
-typedef struct Nodo Lista;
+typedef struct Lista Lista;
 
 void lista_inicializar(Lista **lista);
 void lista_liberar(Lista **lista);

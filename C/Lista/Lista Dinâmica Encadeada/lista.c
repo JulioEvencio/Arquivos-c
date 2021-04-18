@@ -3,8 +3,8 @@
 
 #define LISTA_INICIO 1
 
-typedef struct Nodo Nodo;
-struct Nodo {
+typedef struct Lista Nodo;
+struct Lista {
     Elemento elemento;
     Nodo *proximo;
 };

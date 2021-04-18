@@ -10,7 +10,7 @@ struct Elemento {
 };
 typedef struct Elemento Elemento;
 
-typedef struct Nodo Pilha;
+typedef struct Pilha Pilha;
 
 void pilha_inicializar(Pilha **pilha);
 void pilha_liberar(Pilha **pilha);

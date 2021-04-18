@@ -5,7 +5,7 @@
 #define FILA_SEM_MEMORIA -1
 #define FILA_VAZIA -2
 #define FILA_CHEIA -3
-#define FILA_TAMANHO_INVALIDO -5
+#define FILA_TAMANHO_INVALIDO -4
 
 struct Elemento {
     int x;

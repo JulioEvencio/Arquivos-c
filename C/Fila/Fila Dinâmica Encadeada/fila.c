@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include "fila.h"
 
-typedef struct Nodo Nodo;
-struct Nodo {
+typedef struct Fila Nodo;
+struct Fila {
     Elemento elemento;
     Nodo *proximo;
 };
@@ -68,6 +68,14 @@ int fila_remover(Fila **fila) {
 
     *fila = (*fila)->proximo;
     free(nodo);
+
+    return FILA_SUCESSO;
+}
+
+int fila_alterar(Fila **fila, Elemento *elemento) {
+    if (*fila == NULL) return FILA_VAZIA;
+
+    (*fila)->elemento = *elemento;
 
     return FILA_SUCESSO;
 }

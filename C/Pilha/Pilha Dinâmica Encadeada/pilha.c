@@ -1,15 +1,11 @@
 #include <stdlib.h>
 #include "pilha.h"
 
-#define PILHA_INICIO 1
-
-typedef struct Nodo Nodo;
-struct Nodo {
+typedef struct Pilha Nodo;
+struct Pilha {
     Elemento elemento;
     Nodo *proximo;
 };
-
-typedef struct Nodo Pilha;
 
 void pilha_inicializar(Pilha **pilha) {
     *pilha = NULL;
