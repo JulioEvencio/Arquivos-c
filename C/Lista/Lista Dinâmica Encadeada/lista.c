@@ -70,7 +70,7 @@ int lista_adicionar_posicao(Lista **lista, Elemento *elemento, int posicao) {
     } else {
         Nodo *nodo_anterior = NULL, *nodo_atual = *lista;
 
-        for (int i = LISTA_INICIO; i <= posicao; i++) {
+        for (int i = LISTA_INICIO; i < posicao; i++) {
             nodo_anterior = nodo_atual;
             nodo_atual = nodo_atual->proximo;
         }
@@ -132,7 +132,7 @@ int lista_remover_posicao(Lista **lista, int posicao) {
     } else {
         Nodo *auxiliar = NULL;
 
-        for (int i = LISTA_INICIO; i <= posicao; i++) {
+        for (int i = LISTA_INICIO; i < posicao; i++) {
             auxiliar = nodo;
             nodo = nodo->proximo;
         }
@@ -184,7 +184,7 @@ int lista_alterar_posicao(Lista **lista, Elemento *elemento, int posicao) {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
-    for (int i = LISTA_INICIO; i <= posicao; i++) {
+    for (int i = LISTA_INICIO; i < posicao; i++) {
         nodo = nodo->proximo;
     }
 
@@ -224,7 +224,7 @@ int lista_obter_posicao(Lista **lista, Elemento *elemento, int posicao) {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
-    for (int i = LISTA_INICIO; i <= posicao; i++) {
+    for (int i = LISTA_INICIO; i < posicao; i++) {
         nodo = nodo->proximo;
     }
 
