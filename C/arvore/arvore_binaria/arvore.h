@@ -28,6 +28,8 @@ int arvore_criar_raiz(Arvore **arvore, Elemento *elemento, int chave);
 int arvore_adicionar_esquerda(Arvore **arvore, int chave_pai, Elemento *elemento, int chave_filho);
 int arvore_adicionar_direita(Arvore **arvore, int chave_pai, Elemento *elemento, int chave_filho);
 
+int arvore_remover(Arvore **arvore, Elemento *elemento, int chave);
+
 int arvore_alterar(Arvore **arvore, Elemento *elemento, int chave);
 int arvore_obter(Arvore **arvore, Elemento *elemento, int chave);
 

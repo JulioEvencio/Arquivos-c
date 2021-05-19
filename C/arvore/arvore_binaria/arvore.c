@@ -11,6 +11,7 @@ struct Arvore
 };
 
 Nodo *arvore_localizar_nodo(Arvore **arvore, int chave);
+Nodo *arvore_localizar_pai(Arvore **arvore, int chave);
 
 void arvore_inicializar(Arvore **arvore)
 {
@@ -67,6 +68,42 @@ Nodo *arvore_localizar_nodo(Arvore **arvore, int chave)
     }
 
     return esquerda;
+}
+
+Nodo *arvore_localizar_pai(Arvore **arvore, int chave)
+{
+    Nodo *pai = NULL;
+
+    if ((*arvore)->chave == chave) return pai;
+
+    if ((*arvore)->esquerda != NULL)
+    {
+        if ((*arvore)->esquerda->chave == chave)
+        {
+            return *arvore;
+        }
+        else
+        {
+            pai = arvore_localizar_nodo(&(*arvore)->esquerda, chave);
+        }
+    }
+
+    if (pai == NULL)
+    {
+        if ((*arvore)->direita != NULL)
+        {
+            if ((*arvore)->direita->chave == chave)
+            {
+                return *arvore;
+            }
+            else
+            {
+                pai = arvore_localizar_nodo(&(*arvore)->direita, chave);
+            }
+        }
+    }
+
+    return pai;
 }
 
 int arvore_criar_raiz(Arvore **arvore, Elemento *elemento, int chave)
@@ -131,6 +168,41 @@ int arvore_adicionar_direita(Arvore **arvore, int chave_pai, Elemento *elemento,
     filho->esquerda = NULL;
     filho->direita = NULL;
     pai->direita = filho;
+
+    return ARVORE_SUCESSO;
+}
+
+int arvore_remover(Arvore **arvore, Elemento *elemento, int chave)
+{
+    Nodo *pai = NULL;
+
+    if (*arvore == NULL) return ARVORE_NULA;
+
+    if ((*arvore)->chave == chave)
+    {
+        arvore_liberar(arvore);
+        *arvore = NULL;
+    }
+    else
+    {
+        Nodo *nodo = NULL;
+
+        nodo = arvore_localizar_pai(arvore, chave);
+
+        if (nodo == NULL) return ARVORE_CHAVE_INVALIDA;
+
+        if (nodo->esquerda->chave == chave)
+        {
+            arvore_liberar(&(*arvore)->esquerda);
+            (*arvore)->esquerda = NULL;
+        }
+
+        if (nodo->direita->chave == chave)
+        {
+            arvore_liberar(&(*arvore)->direita);
+            (*arvore)->direita = NULL;
+        }
+    }
 
     return ARVORE_SUCESSO;
 }
