@@ -79,6 +79,7 @@ int fila_remover(Fila **fila, Elemento *elemento)
 
     if (nodo == NULL) return FILA_VAZIA;
 
+    *elemento = (*fila)->elemento;
     *fila = (*fila)->proximo;
     free(nodo);
 

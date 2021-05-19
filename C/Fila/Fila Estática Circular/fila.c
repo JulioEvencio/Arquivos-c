@@ -70,6 +70,7 @@ int fila_remover(Fila **fila, Elemento *elemento)
 {
     if (fila_vazia(fila)) return FILA_VAZIA;
 
+    *elemento = (*fila)->elemento[(*fila)->inicio];
     (*fila)->inicio = ((*fila)->inicio + 1) % (*fila)->tamanho_max;
     (*fila)->tamanho--;
 

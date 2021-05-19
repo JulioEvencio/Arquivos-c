@@ -129,6 +129,7 @@ int lista_remover_inicio(Lista **lista, Elemento *elemento)
 
     if (nodo == NULL) return LISTA_VAZIA;
 
+    *elemento = (*lista)->elemento;
     *lista = (*lista)->proximo;
     free(nodo);
 
@@ -148,6 +149,7 @@ int lista_remover_posicao(Lista **lista, Elemento *elemento, int posicao)
 
     if (posicao == 1)
     {
+        *elemento = nodo->elemento;
         *lista = (*lista)->proximo;
         free(nodo);
     }
@@ -161,6 +163,7 @@ int lista_remover_posicao(Lista **lista, Elemento *elemento, int posicao)
             nodo = nodo->proximo;
         }
 
+        *elemento = nodo->elemento;
         auxiliar->proximo = nodo->proximo;
         free(nodo);
     }
@@ -176,6 +179,7 @@ int lista_remover_final(Lista **lista, Elemento *elemento)
 
     if ((*lista)->proximo == NULL)
     {
+        *elemento = nodo->elemento;
         *lista = (*lista)->proximo;
         free(nodo);
     }
@@ -189,6 +193,7 @@ int lista_remover_final(Lista **lista, Elemento *elemento)
             nodo = nodo->proximo;
         }
 
+        *elemento = nodo->elemento;
         auxiliar->proximo = nodo->proximo;
         free(nodo);
     }

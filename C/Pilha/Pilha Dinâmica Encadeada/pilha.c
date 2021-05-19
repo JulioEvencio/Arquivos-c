@@ -63,6 +63,7 @@ int pilha_desempilhar(Pilha **pilha, Elemento *elemento)
 
     if (nodo == NULL) return PILHA_VAZIA;
 
+    *elemento = (*pilha)->elemento;
     *pilha = (*pilha)->proximo;
     free(nodo);
 

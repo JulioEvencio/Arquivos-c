@@ -97,6 +97,8 @@ int lista_remover_inicio(Lista **lista, Elemento *elemento)
 {
     if (lista_vazia(lista)) return LISTA_VAZIA;
 
+    *elemento = (*lista)->elemento[0];
+
     for (int i = 0; i < (*lista)->tamanho; i++)
     {
         (*lista)->elemento[i] = (*lista)->elemento[i + 1];
@@ -113,6 +115,8 @@ int lista_remover_posicao(Lista **lista, Elemento *elemento, int posicao)
 
     if (posicao < 1 || posicao > (*lista)->tamanho) return LISTA_POSICAO_INEXISTENTE;
 
+    *elemento = (*lista)->elemento[posicao - 1];
+
     for (int i = posicao; i < (*lista)->tamanho; i++)
     {
         (*lista)->elemento[i] = (*lista)->elemento[i + 1];
@@ -127,6 +131,7 @@ int lista_remover_final(Lista **lista, Elemento *elemento)
 {
     if (lista_vazia(lista)) return LISTA_VAZIA;
 
+    *elemento = (*lista)->elemento[(*lista)->tamanho - 1];
     (*lista)->tamanho--;
 
     return LISTA_SUCESSO;
