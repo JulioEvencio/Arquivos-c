@@ -1,33 +1,37 @@
 #include <stdlib.h>
 #include "lista.h"
 
-#define LISTA_INICIO 1
-
 typedef struct Lista Nodo;
-struct Lista {
+struct Lista
+{
     Elemento elemento;
     Nodo *proximo;
 };
 
-void lista_inicializar(Lista **lista) {
+void lista_inicializar(Lista **lista)
+{
     *lista = NULL;
 }
 
-void lista_liberar(Lista **lista) {
+void lista_liberar(Lista **lista)
+{
     Nodo *nodo = NULL;
 
-    while (*lista != NULL) {
+    while (*lista != NULL)
+    {
         nodo = *lista;
         *lista = (*lista)->proximo;
         free(nodo);
     }
 }
 
-int lista_tamanho(Lista **lista) {
+int lista_obter_tamanho(Lista **lista)
+{
     int tamanho = 0;
     Nodo *nodo = *lista;
 
-    while (nodo != NULL) {
+    while (nodo != NULL)
+    {
         nodo = nodo->proximo;
         tamanho++;
     }
@@ -35,11 +39,13 @@ int lista_tamanho(Lista **lista) {
     return tamanho;
 }
 
-int lista_vazia(Lista **lista) {
+int lista_vazia(Lista **lista)
+{
     return *lista == NULL;
 }
 
-int lista_adicionar_inicio(Lista **lista, Elemento *elemento) {
+int lista_adicionar_inicio(Lista **lista, Elemento *elemento)
+{
     Nodo *nodo = malloc(sizeof *nodo);
 
     if (nodo == NULL) return LISTA_SEM_MEMORIA;
@@ -51,10 +57,12 @@ int lista_adicionar_inicio(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_adicionar_posicao(Lista **lista, Elemento *elemento, int posicao) {
+int lista_adicionar_posicao(Lista **lista, Elemento *elemento, int posicao)
+{
     Nodo *nodo = NULL;
 
-    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
+    if (posicao < 1 || posicao > lista_tamanho(lista))
+    {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
@@ -64,13 +72,17 @@ int lista_adicionar_posicao(Lista **lista, Elemento *elemento, int posicao) {
 
     nodo->elemento = *elemento;
 
-    if (posicao == LISTA_INICIO) {
+    if (posicao == 1)
+    {
         nodo->proximo = *lista;
         *lista = nodo;
-    } else {
+    }
+    else
+    {
         Nodo *nodo_anterior = NULL, *nodo_atual = *lista;
 
-        for (int i = LISTA_INICIO; i < posicao; i++) {
+        for (int i = 1; i < posicao; i++)
+        {
             nodo_anterior = nodo_atual;
             nodo_atual = nodo_atual->proximo;
         }
@@ -82,20 +94,25 @@ int lista_adicionar_posicao(Lista **lista, Elemento *elemento, int posicao) {
     return LISTA_SUCESSO;
 }
 
-int lista_adicionar_final(Lista **lista, Elemento *elemento) {
+int lista_adicionar_final(Lista **lista, Elemento *elemento)
+{
     Nodo *nodo = malloc(sizeof *nodo);
 
     if (nodo == NULL) return LISTA_SEM_MEMORIA;
 
     nodo->elemento = *elemento;
 
-    if (*lista == NULL) {
+    if (*lista == NULL)
+    {
         nodo->proximo = *lista;
         *lista = nodo;
-    } else {
+    }
+    else
+    {
         Nodo *auxiliar = *lista;
 
-        while (auxiliar->proximo != NULL) {
+        while (auxiliar->proximo != NULL)
+        {
             auxiliar = auxiliar->proximo;
         }
 
@@ -106,7 +123,8 @@ int lista_adicionar_final(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_inicio(Lista **lista) {
+int lista_remover_inicio(Lista **lista, Elemento *elemento)
+{
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
@@ -117,22 +135,28 @@ int lista_remover_inicio(Lista **lista) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_posicao(Lista **lista, int posicao) {
+int lista_remover_posicao(Lista **lista, Elemento *elemento, int posicao)
+{
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
+    if (posicao < 1 || posicao > lista_tamanho(lista))
+    {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
-    if (posicao == LISTA_INICIO) {
+    if (posicao == 1)
+    {
         *lista = (*lista)->proximo;
         free(nodo);
-    } else {
+    }
+    else
+    {
         Nodo *auxiliar = NULL;
 
-        for (int i = LISTA_INICIO; i < posicao; i++) {
+        for (int i = 1; i < posicao; i++)
+        {
             auxiliar = nodo;
             nodo = nodo->proximo;
         }
@@ -144,18 +168,23 @@ int lista_remover_posicao(Lista **lista, int posicao) {
     return LISTA_SUCESSO;
 }
 
-int lista_remover_final(Lista **lista) {
+int lista_remover_final(Lista **lista, Elemento *elemento)
+{
     Nodo *nodo = *lista;
 
     if (nodo == NULL) LISTA_VAZIA;
 
-    if ((*lista)->proximo == NULL) {
+    if ((*lista)->proximo == NULL)
+    {
         *lista = (*lista)->proximo;
         free(nodo);
-    } else {
+    }
+    else
+    {
         Nodo *auxiliar = NULL;
 
-        while (nodo->proximo != NULL) {
+        while (nodo->proximo != NULL)
+        {
             auxiliar = nodo;
             nodo = nodo->proximo;
         }
@@ -167,7 +196,8 @@ int lista_remover_final(Lista **lista) {
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_inicio(Lista **lista, Elemento *elemento) {
+int lista_alterar_inicio(Lista **lista, Elemento *elemento)
+{
     if (*lista == NULL) return LISTA_VAZIA;
 
     (*lista)->elemento = *elemento;
@@ -175,16 +205,19 @@ int lista_alterar_inicio(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_posicao(Lista **lista, Elemento *elemento, int posicao) {
+int lista_alterar_posicao(Lista **lista, Elemento *elemento, int posicao)
+{
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
+    if (posicao < 1 || posicao > lista_tamanho(lista))
+    {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
-    for (int i = LISTA_INICIO; i < posicao; i++) {
+    for (int i = 1; i < posicao; i++)
+    {
         nodo = nodo->proximo;
     }
 
@@ -193,12 +226,14 @@ int lista_alterar_posicao(Lista **lista, Elemento *elemento, int posicao) {
     return LISTA_SUCESSO;
 }
 
-int lista_alterar_final(Lista **lista, Elemento *elemento) {
+int lista_alterar_final(Lista **lista, Elemento *elemento)
+{
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    while (nodo->proximo != NULL) {
+    while (nodo->proximo != NULL)
+    {
         nodo = nodo->proximo;
     }
 
@@ -207,7 +242,8 @@ int lista_alterar_final(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_obter_inicio(Lista **lista, Elemento *elemento) {
+int lista_obter_inicio(Lista **lista, Elemento *elemento)
+{
     if (*lista == NULL) return LISTA_VAZIA;
 
     *elemento = (*lista)->elemento;
@@ -215,16 +251,19 @@ int lista_obter_inicio(Lista **lista, Elemento *elemento) {
     return LISTA_SUCESSO;
 }
 
-int lista_obter_posicao(Lista **lista, Elemento *elemento, int posicao) {
+int lista_obter_posicao(Lista **lista, Elemento *elemento, int posicao)
+{
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    if (posicao < LISTA_INICIO || posicao > lista_tamanho(lista)) {
+    if (posicao < 1 || posicao > lista_tamanho(lista))
+    {
         return LISTA_POSICAO_INEXISTENTE;
     }
 
-    for (int i = LISTA_INICIO; i < posicao; i++) {
+    for (int i = 1; i < posicao; i++)
+    {
         nodo = nodo->proximo;
     }
 
@@ -233,12 +272,14 @@ int lista_obter_posicao(Lista **lista, Elemento *elemento, int posicao) {
     return LISTA_SUCESSO;
 }
 
-int lista_obter_final(Lista **lista, Elemento *elemento) {
+int lista_obter_final(Lista **lista, Elemento *elemento)
+{
     Nodo *nodo = *lista;
 
     if (nodo == NULL) return LISTA_VAZIA;
 
-    while (nodo->proximo != NULL) {
+    while (nodo->proximo != NULL)
+    {
         nodo = nodo->proximo;
     }
 
