@@ -42,7 +42,7 @@ public Pilha<Elemento>
 
     public Elemento desempilhar()
     {
-        Nodo<Elemento> elemento = this.pilha.getElemento();
+        Elemento elemento = this.pilha.getElemento();
 
         this.pilha = this.pilha.getProximo();
 
