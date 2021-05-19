@@ -1,9 +1,8 @@
 #include <stdlib.h>
 #include "fila.h"
 
-#define FILA_INICIO 1
-
-struct Fila {
+struct Fila
+{
     int tamanho;
     int tamanho_max;
     int inicio;
@@ -11,8 +10,9 @@ struct Fila {
     Elemento *elemento;
 };
 
-int fila_inicializar(Fila **fila, int tamanho) {
-    if (tamanho < FILA_INICIO) return FILA_TAMANHO_INVALIDO;
+int fila_inicializar(Fila **fila, int tamanho)
+{
+    if (tamanho < 1) return FILA_TAMANHO_INVALIDO;
     
     *fila = malloc(sizeof **fila);
 
@@ -20,7 +20,8 @@ int fila_inicializar(Fila **fila, int tamanho) {
 
     (*fila)->elemento = malloc(sizeof((*fila)->elemento) * tamanho);
 
-    if ((*fila)->elemento == NULL) {
+    if ((*fila)->elemento == NULL)
+    {
         free(*fila);
         return FILA_SEM_MEMORIA;
     }
@@ -33,24 +34,29 @@ int fila_inicializar(Fila **fila, int tamanho) {
     return FILA_SUCESSO;
 }
 
-void fila_liberar(Fila **fila) {
+void fila_liberar(Fila **fila)
+{
     free((*fila)->elemento);
     free(*fila);
 }
 
-int fila_tamanho(Fila **fila) {
+int fila_obter_tamanho(Fila **fila)
+{
     return (*fila)->tamanho;
 }
 
-int fila_vazia(Fila **fila) {
+int fila_vazia(Fila **fila)
+{
     return (*fila)->tamanho == 0;
 }
 
-int fila_cheia(Fila **fila) {
+int fila_cheia(Fila **fila)
+{
     return (*fila)->tamanho == (*fila)->tamanho_max;
 }
 
-int fila_adicionar(Fila **fila, Elemento *elemento) {
+int fila_adicionar(Fila **fila, Elemento *elemento)
+{
     if (fila_cheia(fila)) return FILA_CHEIA;
 
     (*fila)->elemento[(*fila)->fim] = *elemento;
@@ -60,7 +66,8 @@ int fila_adicionar(Fila **fila, Elemento *elemento) {
     return FILA_SUCESSO;
 }
 
-int fila_remover(Fila **fila) {
+int fila_remover(Fila **fila, Elemento *elemento)
+{
     if (fila_vazia(fila)) return FILA_VAZIA;
 
     (*fila)->inicio = ((*fila)->inicio + 1) % (*fila)->tamanho_max;
@@ -69,7 +76,8 @@ int fila_remover(Fila **fila) {
     return FILA_SUCESSO;
 }
 
-int fila_alterar(Fila **fila, Elemento *elemento) {
+int fila_alterar(Fila **fila, Elemento *elemento)
+{
     if (fila_vazia(fila)) return FILA_VAZIA;
 
     (*fila)->elemento[(*fila)->inicio] = *elemento;
@@ -77,7 +85,8 @@ int fila_alterar(Fila **fila, Elemento *elemento) {
     return FILA_SUCESSO;
 }
 
-int fila_obter(Fila **fila, Elemento *elemento) {
+int fila_obter(Fila **fila, Elemento *elemento)
+{
     if (fila_vazia(fila)) return FILA_VAZIA;
 
     *elemento = (*fila)->elemento[(*fila)->inicio];
