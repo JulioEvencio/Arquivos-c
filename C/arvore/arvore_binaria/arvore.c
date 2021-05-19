@@ -174,8 +174,6 @@ int arvore_adicionar_direita(Arvore **arvore, int chave_pai, Elemento *elemento,
 
 int arvore_remover(Arvore **arvore, Elemento *elemento, int chave)
 {
-    Nodo *pai = NULL;
-
     if (*arvore == NULL) return ARVORE_NULA;
 
     if ((*arvore)->chave == chave)
@@ -185,9 +183,7 @@ int arvore_remover(Arvore **arvore, Elemento *elemento, int chave)
     }
     else
     {
-        Nodo *nodo = NULL;
-
-        nodo = arvore_localizar_pai(arvore, chave);
+        Nodo *nodo = arvore_localizar_pai(arvore, chave);
 
         if (nodo == NULL) return ARVORE_CHAVE_INVALIDA;
 
