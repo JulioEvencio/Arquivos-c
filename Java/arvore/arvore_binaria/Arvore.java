@@ -1,6 +1,6 @@
 package arvore.arvore_binaria;
 
-public Arvore<Elemento>
+public class Arvore<Elemento>
 {
     private Nodo<Elemento> arvore;
 
@@ -66,7 +66,7 @@ public Arvore<Elemento>
         {
             if (nodo.getDireita() != null)
             {
-                direita = this.getNodo(nodo.getDireita, chave);
+                direita = this.getNodo(nodo.getDireita(), chave);
             }
             return direita;
         }
@@ -74,79 +74,40 @@ public Arvore<Elemento>
         return esquerda;
     }
 
-    private Nodo<Elemento> getNodoPai(Nodo<Elemento> nodo, int chave)
-    {
-        Nodo<Elemento> nodoPai = null;
-
-        if (nodo.getChave == chave) return nodo;
-
-        Nodo<Elemento> esquerda = nodo.getEsquerda();
-        Nodo<Elemento> direita = nodo.getDireita();
-
-        if (esquerda != null)
-        {
-            if (esquerda.getChave() == chave)
-            {
-                return esquerda;
-            }
-            else
-            {
-                nodoPai = this.getNodo(esquerda, chave);
-            }
-        }
-
-        if (nodoPai == null)
-        {
-            if (direita != null)
-            {
-                if (direita.getChave() == chave)
-                {
-                    return direita;
-                }
-                else
-                {
-                    nodoPai = this.getNodo(direita, chave);
-                }
-            }
-        }
-
-        return nodoPai;
-    }
-
     public void criarRaiz(int chave, Elemento elemento)
     {
-        this.arvore = new Nodo<>(chave, elemento, null, null);
+        this.arvore = new Nodo<>(chave, elemento, null, null, null);
     }
 
     public void adicionarEsquerda(int chave_pai, int chave, Elemento elemento)
     {
-        Nodo<Elemento> nodoPai = null, nodoFilho = null;
+        Nodo<Elemento> nodoPai, nodoFilho;
 
-        if (this.arvore == null) return;
+        if (this.arvore == null) throw new ArvoreSemRaizException();
 
-        pai = this.getNodo(this.arvore, chave_pai);
+        nodoPai = this.getNodo(this.arvore, chave_pai);
 
-        if (pai == null) return;
+        if (nodoPai == null) throw new ChavePaiInvalidaException();
 
-        if (pai.getEsquerda != null) return;
+        if (nodoPai.getEsquerda() != null) throw new NodoOcupadoException();
 
-        nodoFilho = new Nodo<>(chave, elemento, null, null);
+        nodoFilho = new Nodo<>(chave, elemento, nodoPai, null, null);
         nodoPai.setEsquerda(nodoFilho);
     }
 
     public void adicionarDireita(int chave_pai, int chave, Elemento elemento)
     {
-        Nodo<Elemento> nodoPai = null, nodoFilho = null;
+        Nodo<Elemento> nodoPai, nodoFilho;
 
-        if (this.arvore == null) return;
+        if (this.arvore == null) throw new ArvoreSemRaizException();
 
-        pai = this.getNodo(this.arvore, chave_pai);
+        nodoPai = this.getNodo(this.arvore, chave_pai);
 
-        if (pai == null) return;
+        if (nodoPai == null) throw new ChavePaiInvalidaException();
 
-        if (pai.getDireita != null) return;
+        if (nodoPai.getDireita() != null) throw new NodoOcupadoException();
 
-        nodoFilho = new Nodo<>(chave, elemento, null, null);
+        nodoFilho = new Nodo<>(chave, elemento, nodoPai, null, null);
         nodoPai.setDireita(nodoFilho);
     }
 
@@ -154,7 +115,7 @@ public Arvore<Elemento>
     {
         Elemento elemento = null;
 
-        if (this.arvore == null) return;
+        if (this.arvore == null) throw new ArvoreSemRaizException();
 
         if (this.arvore.getChave() == chave)
         {
@@ -163,19 +124,21 @@ public Arvore<Elemento>
         }
         else
         {
-            Nodo<Elemento> nodoPai = this.getNodoPai(this.arvore, int chave);
+            Nodo<Elemento> nodo = this.getNodo(this.arvore, chave);
 
-            if (nodoPai == null) return null;
+            if (nodo == null) throw new ChaveInvalidaException();
 
-            Nodo<Elemento> esquerda = nodoPai.getEsquerda();
-            Nodo<Elemento> direita = nodoPai.getDireita();
+            nodo = nodo.getPai();
+
+            Nodo<Elemento> esquerda = nodo.getEsquerda();
+            Nodo<Elemento> direita = nodo.getDireita();
 
             if (esquerda != null)
             {
                 if (esquerda.getChave() == chave)
                 {
                     elemento = esquerda.getElemento();
-                    nodoPai.setEsquerda = null;
+                    nodo.setEsquerda(null);
                 }
             }
 
@@ -184,7 +147,7 @@ public Arvore<Elemento>
                 if (direita.getChave() == chave)
                 {
                     elemento = direita.getElemento();
-                    nodoPai.setDireita = null;
+                    nodo.setDireita(null);
                 }
             }
         }
@@ -201,12 +164,12 @@ public Arvore<Elemento>
         return nodo.getElemento();
     }
 
-    public void setElemento(int chave)
+    public void setElemento(Elemento elemento, int chave)
     {
         Nodo<Elemento> nodo = this.getNodo(this.arvore, chave);
 
-        if (nodo == null) return null;
+        if (nodo == null) return;
 
-        return nodo.setElemento();
+        nodo.setElemento(elemento);
     }
 }
