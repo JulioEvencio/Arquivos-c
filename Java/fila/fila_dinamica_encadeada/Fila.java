@@ -1,6 +1,6 @@
 package fila.fila_dinamica_encadeada;
 
-public Fila<Elemento>
+public class Fila<Elemento>
 {
     private Nodo<Elemento> fila;
 
@@ -56,6 +56,8 @@ public Fila<Elemento>
 
     public Elemento remover()
     {
+        if (this.isVazia()) throw new FilaVaziaException();
+
         Elemento elemento = this.fila.getElemento();
 
         this.fila = this.fila.getProximo();
@@ -65,11 +67,15 @@ public Fila<Elemento>
 
     public Elemento getElemento()
     {
+        if (this.isVazia()) throw new FilaVaziaException();
+
         return this.fila.getElemento();
     }
 
     public void setElemento(Elemento elemento)
     {
+        if (this.isVazia()) throw new FilaVaziaException();
+
         this.fila.setElemento(elemento);
     }
 }
