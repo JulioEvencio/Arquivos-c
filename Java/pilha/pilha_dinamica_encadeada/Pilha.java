@@ -1,6 +1,6 @@
 package pilha.pilha_dinamica_encadeada;
 
-public Pilha<Elemento>
+public class Pilha<Elemento>
 {
     private Nodo<Elemento> pilha;
 
@@ -42,6 +42,8 @@ public Pilha<Elemento>
 
     public Elemento desempilhar()
     {
+        if (this.isVazia()) throw new PilhaVaziaException();
+
         Elemento elemento = this.pilha.getElemento();
 
         this.pilha = this.pilha.getProximo();
@@ -51,11 +53,15 @@ public Pilha<Elemento>
 
     public Elemento getElemento()
     {
+        if (this.isVazia()) throw new PilhaVaziaException();
+
         return this.pilha.getElemento();
     }
 
     public void setElemento(Elemento elemento)
     {
+        if (this.isVazia()) throw new PilhaVaziaException();
+
         this.pilha.setElemento(elemento);
     }
 }
