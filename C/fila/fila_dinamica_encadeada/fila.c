@@ -75,9 +75,9 @@ int fila_adicionar(Fila **fila, Elemento *elemento)
 
 int fila_remover(Fila **fila, Elemento *elemento)
 {
-    Nodo *nodo = *fila;
+    if (fila_vazia(fila)) return FILA_VAZIA;
 
-    if (nodo == NULL) return FILA_VAZIA;
+    Nodo *nodo = *fila;
 
     *elemento = (*fila)->elemento;
     *fila = (*fila)->proximo;
@@ -88,7 +88,7 @@ int fila_remover(Fila **fila, Elemento *elemento)
 
 int fila_alterar(Fila **fila, Elemento *elemento)
 {
-    if (*fila == NULL) return FILA_VAZIA;
+    if (fila_vazia(fila)) return FILA_VAZIA;
 
     (*fila)->elemento = *elemento;
 
@@ -97,7 +97,7 @@ int fila_alterar(Fila **fila, Elemento *elemento)
 
 int fila_obter(Fila **fila, Elemento *elemento)
 {
-    if (*fila == NULL) return FILA_VAZIA;
+    if (fila_vazia(fila)) return FILA_VAZIA;
 
     *elemento = (*fila)->elemento;
 

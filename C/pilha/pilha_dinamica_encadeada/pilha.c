@@ -59,9 +59,9 @@ int pilha_empilhar(Pilha **pilha, Elemento *elemento)
 
 int pilha_desempilhar(Pilha **pilha, Elemento *elemento)
 {
-    Nodo *nodo = *pilha;
+    if (pilha_vazia(pilha)) return PILHA_VAZIA;
 
-    if (nodo == NULL) return PILHA_VAZIA;
+    Nodo *nodo = *pilha;
 
     *elemento = (*pilha)->elemento;
     *pilha = (*pilha)->proximo;
@@ -72,7 +72,7 @@ int pilha_desempilhar(Pilha **pilha, Elemento *elemento)
 
 int pilha_alterar(Pilha **pilha, Elemento *elemento)
 {
-    if (*pilha == NULL) return PILHA_VAZIA;
+    if (pilha_vazia(pilha)) return PILHA_VAZIA;
 
     (*pilha)->elemento = *elemento;
 
@@ -81,7 +81,7 @@ int pilha_alterar(Pilha **pilha, Elemento *elemento)
 
 int pilha_obter(Pilha **pilha, Elemento *elemento)
 {
-    if (*pilha == NULL) return PILHA_VAZIA;
+    if (pilha_vazia(pilha)) return PILHA_VAZIA;
 
     *elemento = (*pilha)->elemento;
 
