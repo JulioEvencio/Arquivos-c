@@ -1,2 +1,2 @@
-# Arquivos C
-Arquivos para desenvolvimento em C
+# Arquivos-c
+Alguns arquivos para desenvolvimento de programas em C
