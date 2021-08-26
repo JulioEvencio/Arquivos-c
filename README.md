@@ -1,2 +1,2 @@
-# Estrutura_de_Dados
-Arquivos para Estrutura de Dados
+# Arquivos C
+Arquivos para desenvolvimento em C
